@@ -1,3 +1,5 @@
+//import gui.LoginView;
+
 
 public class main {
 
@@ -11,8 +13,8 @@ public class main {
 		
 		//NEW hintergrundkram
 		//Loginwindow in ne Klasse schieben
-		
-
+		//LoginView view = new LoginView("SharedBox Ultimate - Share Your Stuff!"); 
+		Login login = new Login();
 
 	}
 

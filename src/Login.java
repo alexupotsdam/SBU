@@ -11,6 +11,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -38,18 +40,17 @@ public class Login  extends JFrame  {
 	
 	 public final static Color backgroundColor      = new Color(250, 250, 250);
 	 public final static Color ribbonColor      	= new Color(0, 230,190);
+
 	
-	static JButton	closeButton;
-	static JLabel	label1 ;
-	static JLabel	titleText ;
+	static SButton	closeButton, loginButton;
+	
+	static JLabel	titleText, label1;
 	static JPanel topRibbon;
 	
 	static JTextField usernameField;
 	static JPasswordField passwordField;
 	
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
-	
-	
 	
 	public Login() {
 		setBounds(60, 60, windowWidth, windowHeight);
@@ -80,9 +81,7 @@ public class Login  extends JFrame  {
 		
 		label1 = new JLabel("Bitte loggen sie sich ein.");
 		label1.setForeground(Color.white);
-		label1.setFont(new Font("Sans", Font.BOLD, 12));
-		//label1.setBackground(Color.gray);
-		//label1.setOpaque(true);		
+		label1.setFont(new Font("Sans", Font.BOLD, 12));	
 		label1.setBounds(padding, padding*5, 450, 36);
 		
 		//label1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -93,17 +92,11 @@ public class Login  extends JFrame  {
 		titleText = new JLabel("Sharedbox Ultimate");
 		titleText.setForeground(Color.white);
 		titleText.setFont(new Font("Sans", Font.BOLD, 22));
-		//label1.setBackground(Color.gray);
-		//label1.setOpaque(true);		
 		titleText.setBounds(0, 0, windowWidth, padding*3);
-		
 		titleText.setHorizontalAlignment(SwingConstants.CENTER);
-		//titleText.setVerticalAlignment(SwingConstants.NORTH);
 		add(titleText);
 		
-		
-		closeButton=new JButton();
-		buttonStuff(closeButton);
+		closeButton=new SButton();
 		add(closeButton);
 		closeButton.setBounds(windowWidth-40, -42+padding*3, 40, 40);
 		closeButton.setIcon(closeImageIcon);
@@ -135,22 +128,31 @@ public class Login  extends JFrame  {
 		        // TODO Auto-generated method stub
 		    }
 		});
-				
-				
+		
 		passwordField=new JPasswordField("Passwort");
 		
-		passwordField.setEditable(true);
-		
-		usernameField.setForeground(Color.gray);
-		passwordField.setForeground(Color.gray);
+		labelStuff(usernameField);
+		labelStuff(passwordField);
 		
 		add(usernameField);
 		usernameField.setBounds(padding, padding*10, windowWidth-padding*2, 36);
 		
 		add(passwordField);
-		passwordField.setBounds(padding, padding*13, windowWidth-padding*2, 36);
+		passwordField.setBounds(padding, padding*14, windowWidth-padding*2, 36);
 		
+		loginButton=new SButton("login");
+		loginButton.setBounds(padding, padding*18, windowWidth-padding*2, 36);
+		loginButton.setBackground(ribbonColor);
+		loginButton.setOpaque(true);
 		
+		loginButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+					usernameField.setText("heute nicht");
+				}
+			});
+		
+		add(loginButton);
 		
 		setVisible(true);
 	}
@@ -159,21 +161,15 @@ public class Login  extends JFrame  {
 		// TODO Auto-generated method stub
 
 		new Login();
-		
-		//Insets insets = this.getInsets();
-		//System.out.println(insets.top);
-		
-		
-		
-		
 
 	}
 	
-	public void buttonStuff(JButton b){
-		b.setBorderPainted(false); 
-		b.setContentAreaFilled(false); 
-		b.setFocusPainted(false); 
-		b.setOpaque(false);
+	
+	
+	public void labelStuff(JTextField tf){
+		tf.setForeground(Color.gray);
+		tf.setBackground(null);
+		tf.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
 	}
 
 }
