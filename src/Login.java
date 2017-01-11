@@ -25,17 +25,20 @@ import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-
+//auf VCM verzichten da nichts zu tun is
 public class Login  extends JFrame  {
 
 	private int X = 0;
 	private int Y = 0;
 	
-	int windowWidth=400;
-	int windowHeight=600;
-	
 	int padding=14;
+	
+	int windowWidth=400;
+	int windowHeight=14*22;
+	
 	int frameOffset;
+	
+	static JPasswordField d;
 	
 	
 	 public final static Color backgroundColor      = new Color(250, 250, 250);
@@ -47,8 +50,8 @@ public class Login  extends JFrame  {
 	static JLabel	titleText, label1;
 	static JPanel topRibbon;
 	
-	static JTextField usernameField;
-	static JPasswordField passwordField;
+	static STextField usernameField;
+	static SPasswordField passwordField;
 	
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 	
@@ -112,36 +115,17 @@ public class Login  extends JFrame  {
 		topRibbon.setBounds(0,0,windowWidth,padding*7);
 		add(topRibbon);
 	
-		usernameField=new JTextField("Benutzername");
-		usernameField.getDocument().addDocumentListener(new DocumentListener() {
-
-		    public void removeUpdate(DocumentEvent e) {
-		        // TODO Auto-generated method stub
-		    }
-
-		    public void insertUpdate(DocumentEvent e) {
-		        // TODO Auto-generated method stub  
-		    	usernameField.setForeground(Color.darkGray);
-		    }
-
-		    public void changedUpdate(DocumentEvent e) {
-		        // TODO Auto-generated method stub
-		    }
-		});
-		
-		passwordField=new JPasswordField("Passwort");
-		
-		labelStuff(usernameField);
-		labelStuff(passwordField);
+		usernameField=new STextField("Benutzername");
+		passwordField=new SPasswordField("Passwort");
 		
 		add(usernameField);
-		usernameField.setBounds(padding, padding*10, windowWidth-padding*2, 36);
+		usernameField.setBounds(padding, padding*8, windowWidth-padding*2, padding*3);
 		
 		add(passwordField);
-		passwordField.setBounds(padding, padding*14, windowWidth-padding*2, 36);
+		passwordField.setBounds(padding, padding*12, windowWidth-padding*2, padding*3);
 		
 		loginButton=new SButton("login");
-		loginButton.setBounds(padding, padding*18, windowWidth-padding*2, 36);
+		loginButton.setBounds(padding, padding*17, windowWidth-padding*2, padding*4);
 		loginButton.setBackground(ribbonColor);
 		loginButton.setOpaque(true);
 		
@@ -149,6 +133,9 @@ public class Login  extends JFrame  {
 		{
 			public void actionPerformed(ActionEvent e) {
 					usernameField.setText("heute nicht");
+					
+					
+					
 				}
 			});
 		
@@ -164,12 +151,5 @@ public class Login  extends JFrame  {
 
 	}
 	
-	
-	
-	public void labelStuff(JTextField tf){
-		tf.setForeground(Color.gray);
-		tf.setBackground(null);
-		tf.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
-	}
 
 }
