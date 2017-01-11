@@ -20,9 +20,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 
-public class Login  extends JWindow {
+public class Login  extends JFrame  {
 
 	private int X = 0;
 	private int Y = 0;
@@ -46,6 +48,8 @@ public class Login  extends JWindow {
 	static JPasswordField passwordField;
 	
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
+	
+	
 	
 	public Login() {
 		setBounds(60, 60, windowWidth, windowHeight);
@@ -72,6 +76,7 @@ public class Login  extends JWindow {
 		
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(backgroundColor);
+		setUndecorated(true);
 		
 		label1 = new JLabel("Bitte loggen sie sich ein.");
 		label1.setForeground(Color.white);
@@ -114,7 +119,36 @@ public class Login  extends JWindow {
 		topRibbon.setBounds(0,0,windowWidth,padding*7);
 		add(topRibbon);
 	
+		usernameField=new JTextField("Benutzername");
+		usernameField.getDocument().addDocumentListener(new DocumentListener() {
+
+		    public void removeUpdate(DocumentEvent e) {
+		        // TODO Auto-generated method stub
+		    }
+
+		    public void insertUpdate(DocumentEvent e) {
+		        // TODO Auto-generated method stub  
+		    	usernameField.setForeground(Color.darkGray);
+		    }
+
+		    public void changedUpdate(DocumentEvent e) {
+		        // TODO Auto-generated method stub
+		    }
+		});
+				
+				
+		passwordField=new JPasswordField("Passwort");
 		
+		passwordField.setEditable(true);
+		
+		usernameField.setForeground(Color.gray);
+		passwordField.setForeground(Color.gray);
+		
+		add(usernameField);
+		usernameField.setBounds(padding, padding*10, windowWidth-padding*2, 36);
+		
+		add(passwordField);
+		passwordField.setBounds(padding, padding*13, windowWidth-padding*2, 36);
 		
 		
 		
