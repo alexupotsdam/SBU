@@ -1,18 +1,19 @@
+package ui;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 
-public class SPasswordField extends JPasswordField{
+public class STextField extends JTextField{
 
-	public SPasswordField(String string) {
-		super(string);
+	public STextField(String string) {
 		// TODO Auto-generated constructor stub
+		setText(string);
 		
 		setForeground(Color.gray);
 		setBackground(null);
@@ -38,9 +39,8 @@ public class SPasswordField extends JPasswordField{
             }
         });
 		
-		
 	}
+	
+	
 
-	
-	
 }

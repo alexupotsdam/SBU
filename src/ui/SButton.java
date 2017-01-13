@@ -1,3 +1,4 @@
+package ui;
 import java.awt.Color;
 
 import javax.swing.JButton;
@@ -5,12 +6,7 @@ import javax.swing.JButton;
 
 public class SButton extends JButton{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	
+	private static final long serialVersionUID = 5064648328217226105L;
 
 	public SButton(String string) {
 		// TODO Auto-generated constructor stub

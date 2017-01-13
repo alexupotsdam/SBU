@@ -25,6 +25,10 @@ import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import ui.SButton;
+import ui.SPasswordField;
+import ui.STextField;
+
 //auf VCM verzichten da nichts zu tun is
 public class Login  extends JFrame  {
 
@@ -40,9 +44,8 @@ public class Login  extends JFrame  {
 	
 	static JPasswordField d;
 	
-	
-	 public final static Color backgroundColor      = new Color(250, 250, 250);
-	 public final static Color ribbonColor      	= new Color(0, 230,190);
+	public final static Color backgroundColor      = new Color(250, 250, 250);
+	public final static Color ribbonColor      	= new Color(0, 230,190);
 
 	
 	static SButton	closeButton, loginButton;
@@ -91,7 +94,6 @@ public class Login  extends JFrame  {
 		label1.setVerticalAlignment(SwingConstants.NORTH);
 		add(label1);
 		
-		
 		titleText = new JLabel("Sharedbox Ultimate");
 		titleText.setForeground(Color.white);
 		titleText.setFont(new Font("Sans", Font.BOLD, 22));
@@ -119,10 +121,10 @@ public class Login  extends JFrame  {
 		passwordField=new SPasswordField("Passwort");
 		
 		add(usernameField);
-		usernameField.setBounds(padding, padding*8, windowWidth-padding*2, padding*3);
+		usernameField.setBounds(padding, padding*9, windowWidth-padding*2, padding*2);
 		
 		add(passwordField);
-		passwordField.setBounds(padding, padding*12, windowWidth-padding*2, padding*3);
+		passwordField.setBounds(padding, padding*13, windowWidth-padding*2, padding*2);
 		
 		loginButton=new SButton("login");
 		loginButton.setBounds(padding, padding*17, windowWidth-padding*2, padding*4);
@@ -132,10 +134,7 @@ public class Login  extends JFrame  {
 		loginButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-					usernameField.setText("heute nicht");
-					
-					
-					
+					usernameField.setText("heute nicht");	
 				}
 			});
 		
