@@ -14,7 +14,11 @@ public class main {
 		//NEW hintergrundkram
 		//Loginwindow in ne Klasse schieben
 		//LoginView view = new LoginView("SharedBox Ultimate - Share Your Stuff!"); 
-		Login login = new Login();
+		
+		Model model = new Model();
+		
+		//Login login = new Login(model);
+		View view = new View(model);
 
 	}
 

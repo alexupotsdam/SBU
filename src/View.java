@@ -9,26 +9,29 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
+
 import ui.SButton;
+import ui.SFileButton;
 import ui.SPasswordField;
 import ui.STextField;
 
-//auf VCM verzichten da nichts zu tun is
+
 @SuppressWarnings("serial")
-public class Login  extends JFrame  {
+public class View extends JFrame {
 
 	private int X = 0;
 	private int Y = 0;
 	
 	int padding=14;
 	
-	int windowWidth=400;
-	int windowHeight=padding*22;
+	int windowWidth=800;
+	int windowHeight=padding*44;
 	
 	int frameOffset;
 	
@@ -43,12 +46,12 @@ public class Login  extends JFrame  {
 	static JLabel	titleText, label1;
 	static JPanel topRibbon;
 	
-	static STextField usernameField;
-	static SPasswordField passwordField;
+	static SFileButton filesButtons[]=new SFileButton[999];
 	
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 	
-	public Login(final Model model) {
+	public View(Model model){
+		
 		setBounds(60, 60, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -107,14 +110,7 @@ public class Login  extends JFrame  {
 		topRibbon.setBounds(0,0,windowWidth,padding*7);
 		add(topRibbon);
 	
-		usernameField=new STextField("Benutzername");
-		passwordField=new SPasswordField("Passwort");
 		
-		add(usernameField);
-		usernameField.setBounds(padding, padding*9, windowWidth-padding*2, padding*2);
-		
-		add(passwordField);
-		passwordField.setBounds(padding, padding*13, windowWidth-padding*2, padding*2);
 		
 		loginButton=new SButton("login");
 		loginButton.setBounds(padding, padding*17, windowWidth-padding*2, padding*4);
@@ -124,21 +120,25 @@ public class Login  extends JFrame  {
 		loginButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-					usernameField.setText("heute nicht");	
-					
-					if(model.loginAction("a","a")==true){
-						View view=new View(model);
-						System.out.println("eingelocht");
-					}
-					
+				
 				}
 			});
 		
 		add(loginButton);
 		
+		String fileList[]=new String[99];
+		
+		fileList=model.files();
+		
+		for(int i=0; i<4; i++)
+		{
+			filesButtons[i]=new SFileButton(fileList[i]);
+			filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
+			add(filesButtons[i]);
+		}
+		
 		setVisible(true);
+		
 	}
 	
-	
-
 }

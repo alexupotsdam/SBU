@@ -14,8 +14,6 @@ public class SButton extends JButton{
 		setup();
 	}
 
-
-
 	public SButton() {
 		// TODO Auto-generated constructor stub
 		setup();
@@ -29,9 +27,6 @@ public class SButton extends JButton{
 		setForeground(Color.white);
 	}
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

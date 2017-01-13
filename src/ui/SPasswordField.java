@@ -8,8 +8,9 @@ import javax.swing.JPasswordField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-
 public class SPasswordField extends JPasswordField{
+
+	private static final long serialVersionUID = 5898473840091837323L;
 
 	public SPasswordField(String string) {
 		super(string);
@@ -38,10 +39,5 @@ public class SPasswordField extends JPasswordField{
             	setText("");
             }
         });
-		
-		
 	}
-
-	
-	
 }

@@ -11,6 +11,8 @@ import javax.swing.event.DocumentListener;
 
 public class STextField extends JTextField{
 
+	private static final long serialVersionUID = 246494772035087712L;
+
 	public STextField(String string) {
 		// TODO Auto-generated constructor stub
 		setText(string);
@@ -37,10 +39,6 @@ public class STextField extends JTextField{
             public void mouseClicked(MouseEvent e){
             	setText("");
             }
-        });
-		
+        });	
 	}
-	
-	
-
 }
