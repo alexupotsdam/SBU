@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -7,7 +9,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Observable;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import ui.SButton;
 import ui.SFileButton;
@@ -23,7 +31,7 @@ import ui.STextField;
 
 
 @SuppressWarnings("serial")
-public class View extends JFrame {
+public class View extends JFrame implements java.util.Observer {
 
 	private int X = 0;
 	private int Y = 0;
@@ -34,6 +42,8 @@ public class View extends JFrame {
 	int windowHeight=padding*44;
 	
 	int frameOffset;
+	
+	Model model;
 	
 	static JPasswordField d;
 	
@@ -50,7 +60,13 @@ public class View extends JFrame {
 	
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 	
+	String file1="mixtape.mp3";
+	
 	public View(Model model){
+		this.model=model;
+		Controller controller = new Controller(model, this);
+		
+		model.addObserver(this);
 		
 		setBounds(60, 60, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
@@ -78,7 +94,21 @@ public class View extends JFrame {
 		getContentPane().setBackground(backgroundColor);
 		setUndecorated(true);
 		
-		label1 = new JLabel("Bitte loggen sie sich ein.");
+		closeButton=new SButton();
+		add(closeButton);
+		closeButton.setBounds(windowWidth-40, -42+padding*3, 40, 40);
+		closeButton.setIcon(closeImageIcon);
+		
+		
+		closeButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+		
+		
+		label1 = new JLabel("Kann man hier noch was cooles hinschreiben?");
 		label1.setForeground(Color.white);
 		label1.setFont(new Font("Sans", Font.BOLD, 12));	
 		label1.setBounds(padding, padding*5, 450, 36);
@@ -94,16 +124,7 @@ public class View extends JFrame {
 		titleText.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleText);
 		
-		closeButton=new SButton();
-		add(closeButton);
-		closeButton.setBounds(windowWidth-40, -42+padding*3, 40, 40);
-		closeButton.setIcon(closeImageIcon);
-		closeButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e) {
-					System.exit(0);
-				}
-			});
+		
 		
 		topRibbon=new JPanel();
 		topRibbon.setBackground(ribbonColor);
@@ -112,20 +133,32 @@ public class View extends JFrame {
 	
 		
 		
-		loginButton=new SButton("login");
-		loginButton.setBounds(padding, padding*17, windowWidth-padding*2, padding*4);
+		loginButton=new SButton("Datei Hochladen");
+		loginButton.setBounds(padding, padding*27, windowWidth-padding*2, padding*4);
 		loginButton.setBackground(ribbonColor);
 		loginButton.setOpaque(true);
 		
-		loginButton.addActionListener(new ActionListener()
+		loginButton.addActionListener(controller.addFileListener()); 
+		
+	/*	loginButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
 				
 				}
-			});
+			});*/
 		
 		add(loginButton);
 		
+		
+		
+		refreshFileList();
+		
+		
+		setVisible(true);
+		
+	}
+
+	public void refreshFileList(){
 		String fileList[]=new String[99];
 		
 		fileList=model.files();
@@ -137,8 +170,28 @@ public class View extends JFrame {
 			add(filesButtons[i]);
 		}
 		
-		setVisible(true);
+		System.out.println("View file list refreshed");
 		
+	}
+	
+	public void refreshFileList2(){
+		filesButtons[4]=new SFileButton("2341.png");
+		filesButtons[4].setBounds(padding, padding*8+padding*4*2, windowWidth-padding*2, padding*2);
+		add(filesButtons[4]);
+		
+		
+	
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		refreshFileList2();
+		System.out.println("View Update observed");
+		repaint();
 	}
 	
 }

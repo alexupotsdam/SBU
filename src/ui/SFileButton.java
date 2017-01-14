@@ -20,11 +20,13 @@ public class SFileButton extends JButton{
 
 	BufferedImage icon;
 	URL resource;
+	
+	String text;
 
 	public SFileButton(String string) {
 		// TODO Auto-generated constructor stub
 		
-		
+		if(string!=null){
  
 		if(string.endsWith("png")||string.endsWith("jpg")){
 			 resource = getClass().getClassLoader().getResource("raw/pic.png");  
@@ -49,8 +51,14 @@ public class SFileButton extends JButton{
 	            e.printStackTrace();
 	        }
 		
-		setText(string);
+		//setText(string);
+		text=string;
+		}
+		
+		System.out.println("file "+text);
 		setup();
+		
+		
 	}
 
 	public SFileButton() {
@@ -70,7 +78,7 @@ public class SFileButton extends JButton{
 		setForeground(Color.black);
 		setBackground(null);
 		//setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.GRAY));
-		
+		invalidate();
 	}
 
 	public static void main(String[] args) {
@@ -80,6 +88,7 @@ public class SFileButton extends JButton{
 	
 	@Override
 	   protected void paintComponent(Graphics g) {
+		System.out.println("paint component"+text);
 	      Graphics2D g2 = (Graphics2D) g.create();
 	  //    g2.setPaint(Color.RED);
 	    //  g2.fillRoundRect(2, 2, getWidth(), getHeight(), 24, 24);
@@ -100,17 +109,16 @@ public class SFileButton extends JButton{
 	      
 	      g2.setPaint( new Color(100, 100, 100));
 	      
-	      g2.drawString(getText(), 30, 18);
+	      g2.drawString(text, 30, 18);
 	      
 	      g2.dispose();
 
-	      // super.paintComponent(g);
-	     
 	      
 	     g.drawImage(icon, 2, 2, 22, 22, this);
 	  
-	      System.out.println(getWidth());
-	      System.out.println(getHeight());
+	   //  super.paintComponent(g);
+	     
+	    
 	      
 	   }
 
