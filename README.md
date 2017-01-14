@@ -1,2 +1,2 @@
 # SBU
-[[https://github.com/alexupotsdam/SBU/blob/master/screen.png|alt=octocat]]
+![pic](https://github.com/alexupotsdam/SBU/blob/master/screen.png)
