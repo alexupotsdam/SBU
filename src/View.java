@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -159,37 +160,32 @@ public class View extends JFrame implements java.util.Observer {
 	}
 
 	public void refreshFileList(){
+		
 		String fileList[]=new String[99];
 		
 		fileList=model.files();
-		
-		for(int i=0; i<4; i++)
-		{
-			filesButtons[i]=new SFileButton(fileList[i]);
-			filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
-			add(filesButtons[i]);
+		int i = 0;
+	
+		for(String item : model.files()){
+			if(item != null){	
+				filesButtons[i]=new SFileButton(fileList[i]);
+				filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
+				add(filesButtons[i]);
+				i++;
+			}
 		}
 		
 		System.out.println("View file list refreshed");
 		
 	}
 	
-	public void refreshFileList2(){
-		filesButtons[4]=new SFileButton("2341.png");
-		filesButtons[4].setBounds(padding, padding*8+padding*4*2, windowWidth-padding*2, padding*2);
-		add(filesButtons[4]);
-		
-		
-	
-	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 		
-		
-		refreshFileList2();
+		refreshFileList();
 		System.out.println("View Update observed");
 		repaint();
 	}

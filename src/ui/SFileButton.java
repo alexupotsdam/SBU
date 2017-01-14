@@ -78,7 +78,7 @@ public class SFileButton extends JButton{
 		setForeground(Color.black);
 		setBackground(null);
 		//setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.GRAY));
-		invalidate();
+		
 	}
 
 	public static void main(String[] args) {
@@ -89,10 +89,18 @@ public class SFileButton extends JButton{
 	@Override
 	   protected void paintComponent(Graphics g) {
 		System.out.println("paint component"+text);
+		
 	      Graphics2D g2 = (Graphics2D) g.create();
+	      Graphics2D g3 = (Graphics2D) g.create();
 	  //    g2.setPaint(Color.RED);
 	    //  g2.fillRoundRect(2, 2, getWidth(), getHeight(), 24, 24);
 	
+	      
+	      g3.setPaint( new Color(250, 250, 250)); 
+	      
+	      g3.fillRect(0, 0, getWidth(), getHeight());  
+	     
+	      
 	      g2.setPaint( new Color(0, 0, 0));
 	      /*
 	      g2.drawLine(0, 0, getWidth(), 0);
@@ -102,6 +110,7 @@ public class SFileButton extends JButton{
 	      g2.drawLine(0, getHeight()-1, getWidth(), getHeight()-1);
 	      */
 	      
+
 	      
 	      g2.setRenderingHint(
 	    	        RenderingHints.KEY_TEXT_ANTIALIASING,
@@ -117,7 +126,7 @@ public class SFileButton extends JButton{
 	     g.drawImage(icon, 2, 2, 22, 22, this);
 	  
 	   //  super.paintComponent(g);
-	     
+	//     super.paintComponent(g);
 	    
 	      
 	   }
