@@ -1,2 +1,2 @@
 # SBU
-[[https://github.com/alexupotsdam/SBU/master/screen.png|alt=octocat]]
+[[https://github.com/alexupotsdam/SBU/blob/master/screen.png|alt=octocat]]
