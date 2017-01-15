@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.util.Observable;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -173,11 +174,14 @@ public class View extends JFrame implements java.util.Observer {
 		
 		
 		 panel = new JPanel();
+		  BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+
 			
 	        panel.setBackground(null);
 	        panel.setBackground(Color.red);
 	        
-	        panel.setLayout(null);
+	   //     panel.setLayout(null);
+	        panel.setLayout(boxlayout);
 	 
 	        panel.setBounds(padding, padding*8, windowWidth-padding*2, padding*30);
 		
@@ -189,8 +193,8 @@ public class View extends JFrame implements java.util.Observer {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
-        scrollPane.setBounds(0,0, windowWidth-padding*3, padding*28);
-        
+        scrollPane.setBounds(0,0, windowWidth-padding*2, padding*30);
+        scrollPane.setBorder(null);
         scrollPane.setBackground(Color.blue);
         
         contentPane = new JPanel(null);
@@ -213,18 +217,23 @@ public class View extends JFrame implements java.util.Observer {
 		
 		fileList=model.files();
 		int i = 0;
+		
+		panel.removeAll();
 	
 		for(String item : model.files()){
 			if(item != null){	
 				filesButtons[i]=new SFileButton(fileList[i],i);
-				//filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
-				filesButtons[i].setBounds(0, padding*i*2, windowWidth-padding*2, padding*2);
 				panel.add(filesButtons[i]);
-				if(padding*i*2+padding*2>padding*30){
+				filesButtons[i].setPreferredSize(new Dimension(windowWidth-padding*2, padding*2));
+				filesButtons[i].setMaximumSize(new Dimension(windowWidth-padding*2, padding*2));
+			/*	if(padding*i*2+padding*2>padding*30){
 					System.out.println("größer");
-					contentPane.setBounds(padding, padding*8, windowWidth-padding*2, padding*30+padding*2*i);
-				}
+					panel.setBounds(padding, padding*8, windowWidth-padding*2, padding*30+padding*2*i);
+				}*/
 				//filesButtons[i].addActionListener(controller.fileClickListener());
+				
+				panel.revalidate();
+				
 				filesButtons[i].addMouseListener(controller);
 				i++;
 			}
