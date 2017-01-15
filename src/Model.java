@@ -41,15 +41,18 @@ public class Model extends java.util.Observable{
 		
 	}
 
-	public void addFile(String file1) {
+	public void addFile(String file) {
 		// TODO Auto-generated method stub
-		fileList.add(file1);
-		System.out.println(file1+" hochgeladen.");
+		fileList.add(file);
+		System.out.println(file+" hochgeladen.");
 		
 		setChanged();
 		notifyObservers();
-		
-		
+	}
+
+	public void shareFile(int fileID) {
+		// TODO Auto-generated method stub
+		System.out.println("Shared file "+fileID+" equals "+fileList.get(fileID));
 	}
 
 }

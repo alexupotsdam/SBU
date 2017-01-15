@@ -6,6 +6,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
 
+import ui.Constants;
+import ui.SFileButton;
+
 
 public class Controller  implements ActionListener, MouseListener{
 
@@ -38,6 +41,17 @@ public class Controller  implements ActionListener, MouseListener{
         };
     }
 	
+	public ActionListener addShareFileListener(final int i) {
+		return new ActionListener() {
+            @Override public void actionPerformed (ActionEvent e) {
+                //model.shareFile(view.file1);
+                model.shareFile(i);
+            	//model.shareFile(((ContextMenu)e.getSource()).ficken);
+            //	model.shareFile(((ContextMenu)e.getClass()).ficken);
+            }
+        };
+	}
+	
 	/*
 	public ActionListener fileClickListener () {
         return new ActionListener() {
@@ -55,22 +69,22 @@ public class Controller  implements ActionListener, MouseListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("kekek");
-		 ContextMenu cm=new ContextMenu();
+		
+		 ContextMenu cm=new ContextMenu(this, e.getSource(), ((SFileButton) e.getSource()).getID());
+		 
          cm.show((Component) e.getSource(), e.getX(), e.getY());
+         
+         
 	}
 
 	@Override

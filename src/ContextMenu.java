@@ -15,12 +15,19 @@ public class ContextMenu extends JPopupMenu{
 	int windowWidth=Constants.padding*8;
 	int windowHeight=Constants.padding*4;
 	
+	int fileID;
+	String ficken="asdf";
+	
 	JMenuItem items[]=new JMenuItem[6];
 	
 	
-	
-	public ContextMenu(){
-		System.out.println("ContextMenu created.");
+	public ContextMenu(Controller controller, Object object, int fileID){
+		//System.out.println("ContextMenu for "+object+" created.");
+		
+		this.fileID=fileID;
+		System.out.println("ID "+fileID);
+
+		
 		items[0]=new JMenuItem("Kopieren");
 		items[1]=new JMenuItem("Umbenennen");
 		items[2]=new JMenuItem("Teilen");
@@ -29,23 +36,13 @@ public class ContextMenu extends JPopupMenu{
 		items[5]=new JMenuItem("Löschen");
 		//setBounds(60, 60, windowWidth, windowHeight);
 		
-		//getContentPane().setLayout(null);
-		//getContentPane().setBackground(Constants.backgroundColor);
-		//setUndecorated(true);
-		
-		//setBackground(Constants.backgroundColor);
-		
-		
-		
-		// this.setBorder(BorderFactory.createMatteBorder(10, 20, 1, 10, Color.GRAY));
-		
-		//setVisible(true);
 		
 		for(int i=0; i<items.length; i++){
 			
 			add(items[i]);
-			
 		}
+		
+		items[2].addActionListener(controller.addShareFileListener(fileID));
 		
 	}
 	

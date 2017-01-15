@@ -22,9 +22,15 @@ public class SFileButton extends JButton{
 	URL resource;
 	
 	String text;
+	
+	public int fileID;
+	
 
-	public SFileButton(String string) {
+	public SFileButton(String string, int fileID) {
 		// TODO Auto-generated constructor stub
+		
+		this.fileID=fileID;
+		System.out.println("created "+fileID);
 		
 		if(string!=null){
  
@@ -44,14 +50,12 @@ public class SFileButton extends JButton{
 			resource = getClass().getClassLoader().getResource("raw/other.png");  
 		}
 		
-		
 		 try {
 	        	icon = ImageIO.read(resource);
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
 		
-		//setText(string);
 		text=string;
 		}
 		
@@ -67,8 +71,6 @@ public class SFileButton extends JButton{
 	}
 
 	public void setup(){
-		
-		
 		
 		setBorderPainted(false); 
 		setContentAreaFilled(false); 
@@ -88,7 +90,7 @@ public class SFileButton extends JButton{
 	
 	@Override
 	   protected void paintComponent(Graphics g) {
-		System.out.println("paint component"+text);
+	//	System.out.println("paint component"+text);
 		
 	      Graphics2D g2 = (Graphics2D) g.create();
 	      Graphics2D g3 = (Graphics2D) g.create();
@@ -128,7 +130,9 @@ public class SFileButton extends JButton{
 	   //  super.paintComponent(g);
 	//     super.paintComponent(g);
 	    
-	      
 	   }
 
+	public int getID(){
+		return fileID;
+	}
 }

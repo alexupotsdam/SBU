@@ -151,10 +151,7 @@ public class View extends JFrame implements java.util.Observer {
 		
 		add(loginButton);
 		
-		
-		
 		refreshFileList();
-		
 		
 		setVisible(true);
 		
@@ -169,7 +166,7 @@ public class View extends JFrame implements java.util.Observer {
 	
 		for(String item : model.files()){
 			if(item != null){	
-				filesButtons[i]=new SFileButton(fileList[i]);
+				filesButtons[i]=new SFileButton(fileList[i],i);
 				filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
 				add(filesButtons[i]);
 				//filesButtons[i].addActionListener(controller.fileClickListener());
