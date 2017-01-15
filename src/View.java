@@ -25,6 +25,7 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import ui.Constants;
 import ui.SButton;
 import ui.SFileButton;
 import ui.SPasswordField;
@@ -48,9 +49,7 @@ public class View extends JFrame implements java.util.Observer {
 	
 	static JPasswordField d;
 	
-	public final static Color backgroundColor      = new Color(250, 250, 250);
-	public final static Color ribbonColor      	= new Color(0, 230,190);
-
+	
 	
 	static SButton	closeButton, loginButton;
 	
@@ -61,11 +60,13 @@ public class View extends JFrame implements java.util.Observer {
 	
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 	
+	Controller controller;
+	
 	String file1="mixtape.mp3";
 	
 	public View(Model model){
 		this.model=model;
-		Controller controller = new Controller(model, this);
+		 controller = new Controller(model, this);
 		
 		model.addObserver(this);
 		
@@ -92,7 +93,7 @@ public class View extends JFrame implements java.util.Observer {
 		});
 		
 		getContentPane().setLayout(null);
-		getContentPane().setBackground(backgroundColor);
+		getContentPane().setBackground(Constants.backgroundColor);
 		setUndecorated(true);
 		
 		closeButton=new SButton();
@@ -128,7 +129,7 @@ public class View extends JFrame implements java.util.Observer {
 		
 		
 		topRibbon=new JPanel();
-		topRibbon.setBackground(ribbonColor);
+		topRibbon.setBackground(Constants.ribbonColor);
 		topRibbon.setBounds(0,0,windowWidth,padding*7);
 		add(topRibbon);
 	
@@ -136,7 +137,7 @@ public class View extends JFrame implements java.util.Observer {
 		
 		loginButton=new SButton("Datei Hochladen");
 		loginButton.setBounds(padding, padding*27, windowWidth-padding*2, padding*4);
-		loginButton.setBackground(ribbonColor);
+		loginButton.setBackground(Constants.ribbonColor);
 		loginButton.setOpaque(true);
 		
 		loginButton.addActionListener(controller.addFileListener()); 
@@ -171,6 +172,7 @@ public class View extends JFrame implements java.util.Observer {
 				filesButtons[i]=new SFileButton(fileList[i]);
 				filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
 				add(filesButtons[i]);
+				filesButtons[i].addActionListener(controller.fileClickListener()); 
 				i++;
 			}
 		}
