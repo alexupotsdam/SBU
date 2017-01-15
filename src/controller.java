@@ -1,11 +1,13 @@
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
 
 
-public class Controller  implements ActionListener{
+public class Controller  implements ActionListener, MouseListener{
 
 	Model model;
 	View view;
@@ -36,6 +38,7 @@ public class Controller  implements ActionListener{
         };
     }
 	
+	/*
 	public ActionListener fileClickListener () {
         return new ActionListener() {
             @Override public void actionPerformed (ActionEvent et) {
@@ -47,11 +50,43 @@ public class Controller  implements ActionListener{
                 cm.show((Component) et.getSource(), 0, 0);
             }
         };
-    }
+    }*/
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("kekek");
+		 ContextMenu cm=new ContextMenu();
+         cm.show((Component) e.getSource(), e.getX(), e.getY());
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

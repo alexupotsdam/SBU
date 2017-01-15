@@ -172,7 +172,8 @@ public class View extends JFrame implements java.util.Observer {
 				filesButtons[i]=new SFileButton(fileList[i]);
 				filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
 				add(filesButtons[i]);
-				filesButtons[i].addActionListener(controller.fileClickListener()); 
+				//filesButtons[i].addActionListener(controller.fileClickListener());
+				filesButtons[i].addMouseListener(controller);
 				i++;
 			}
 		}
