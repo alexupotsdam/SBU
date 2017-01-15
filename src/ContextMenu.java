@@ -20,13 +20,12 @@ public class ContextMenu extends JPopupMenu{
 	
 	JMenuItem items[]=new JMenuItem[6];
 	
-	
+			
 	public ContextMenu(Controller controller, Object object, int fileID){
 		//System.out.println("ContextMenu for "+object+" created.");
 		
 		this.fileID=fileID;
 		System.out.println("ID "+fileID);
-
 		
 		items[0]=new JMenuItem("Kopieren");
 		items[1]=new JMenuItem("Umbenennen");
@@ -36,9 +35,7 @@ public class ContextMenu extends JPopupMenu{
 		items[5]=new JMenuItem("Löschen");
 		//setBounds(60, 60, windowWidth, windowHeight);
 		
-		
 		for(int i=0; i<items.length; i++){
-			
 			add(items[i]);
 		}
 		

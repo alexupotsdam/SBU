@@ -21,8 +21,6 @@ public class Controller  implements ActionListener, MouseListener{
 		this.model=model;
 		this.view=view;
 		
-		
-		
 	}
 	
 	public ActionListener getDeleteListener () {
@@ -44,10 +42,7 @@ public class Controller  implements ActionListener, MouseListener{
 	public ActionListener addShareFileListener(final int i) {
 		return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
-                //model.shareFile(view.file1);
                 model.shareFile(i);
-            	//model.shareFile(((ContextMenu)e.getSource()).ficken);
-            //	model.shareFile(((ContextMenu)e.getClass()).ficken);
             }
         };
 	}
@@ -81,7 +76,6 @@ public class Controller  implements ActionListener, MouseListener{
 	public void mousePressed(MouseEvent e) {
 		
 		 ContextMenu cm=new ContextMenu(this, e.getSource(), ((SFileButton) e.getSource()).getID());
-		 
          cm.show((Component) e.getSource(), e.getX(), e.getY());
          
          

@@ -6,13 +6,11 @@ public class Model extends java.util.Observable{
 	List fileList = new ArrayList();
 
 	public Model() {
-		System.out.println("Model erstellt");
-
 		fileList.add("gdfihlu.png");
 		fileList.add("iuhdsf.mp3");
 		fileList.add("dfsgiuh.doc");
 		fileList.add("asdfsadf.xml");
-		
+		System.out.println("Model erstellt");
 	}
 
 	public boolean loginAction(String user, String password) {
