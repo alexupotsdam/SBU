@@ -125,12 +125,10 @@ public class Login  extends JFrame  {
 		{
 			public void actionPerformed(ActionEvent e) {
 					usernameField.setText("heute nicht");	
-					
 					if(model.loginAction("a","a")==true){
 						View view=new View(model);
 						System.out.println("eingelocht");
-					}
-					
+					}	
 				}
 			});
 		

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -22,6 +23,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -49,7 +52,9 @@ public class View extends JFrame implements java.util.Observer {
 	
 	static JPasswordField d;
 	
-	
+	JPanel panel;
+	//JScrollPane panel;
+	JPanel contentPane;
 	
 	static SButton	closeButton, loginButton;
 	
@@ -132,11 +137,26 @@ public class View extends JFrame implements java.util.Observer {
 		topRibbon.setBackground(Constants.ribbonColor);
 		topRibbon.setBounds(0,0,windowWidth,padding*7);
 		add(topRibbon);
-	
+
+
+      //   panel = new JPanel();
+       
+        
+        //JScrollBar wird erzeugt
+      /*  JScrollBar scrollbar = new JScrollBar
+                (JScrollBar.VERTICAL, 30, 10, 0, 100);
+        
+        panel.add(scrollbar);*/
+        
+        //panel.setVisible(true);
+       // getContentPane().add(panel);
+			
+		        
+	        
 		
 		
 		loginButton=new SButton("Datei Hochladen");
-		loginButton.setBounds(padding, padding*27, windowWidth-padding*2, padding*4);
+		loginButton.setBounds(padding, windowHeight-padding*5, windowWidth-padding*2, padding*4);
 		loginButton.setBackground(Constants.ribbonColor);
 		loginButton.setOpaque(true);
 		
@@ -151,7 +171,37 @@ public class View extends JFrame implements java.util.Observer {
 		
 		add(loginButton);
 		
+		
+		 panel = new JPanel();
+			
+	        panel.setBackground(null);
+	        panel.setBackground(Color.red);
+	        
+	        panel.setLayout(null);
+	 
+	        panel.setBounds(padding, padding*8, windowWidth-padding*2, padding*30);
+		
 		refreshFileList();
+		
+		
+		
+		JScrollPane scrollPane = new JScrollPane(panel);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        scrollPane.setBounds(0,0, windowWidth-padding*3, padding*28);
+        
+        scrollPane.setBackground(Color.blue);
+        
+        contentPane = new JPanel(null);
+        contentPane.setLayout(null);
+        contentPane.setBackground(Color.green);
+        contentPane.setPreferredSize(new Dimension(windowWidth-padding*2, padding*30));
+        contentPane.add(scrollPane);
+        //setContentPane(contentPane);
+        contentPane.setBounds(padding, padding*8, windowWidth-padding*2, padding*30);
+        getContentPane().add(contentPane);
+        //pack();
 		
 		setVisible(true);
 		
@@ -167,15 +217,22 @@ public class View extends JFrame implements java.util.Observer {
 		for(String item : model.files()){
 			if(item != null){	
 				filesButtons[i]=new SFileButton(fileList[i],i);
-				filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
-				add(filesButtons[i]);
+				//filesButtons[i].setBounds(padding, padding*8+padding*i*2, windowWidth-padding*2, padding*2);
+				filesButtons[i].setBounds(0, padding*i*2, windowWidth-padding*2, padding*2);
+				panel.add(filesButtons[i]);
+				if(padding*i*2+padding*2>padding*30){
+					System.out.println("größer");
+					contentPane.setBounds(padding, padding*8, windowWidth-padding*2, padding*30+padding*2*i);
+				}
 				//filesButtons[i].addActionListener(controller.fileClickListener());
 				filesButtons[i].addMouseListener(controller);
 				i++;
 			}
 		}
 		
+		panel.repaint();
 		System.out.println("View file list refreshed");
+		System.out.println("height"+panel.getHeight());
 		
 	}
 	
