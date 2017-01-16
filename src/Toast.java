@@ -21,13 +21,11 @@ public class Toast extends JFrame {
 		
 		setUndecorated(true);
 		
-	JLabel	titleText = new JLabel(text);
+		JLabel	titleText = new JLabel(text);
 		titleText.setForeground(Color.white);
 		titleText.setFont(new Font("Sans", Font.BOLD, 18));
 		titleText.setBounds(0, 0, 200, 20);
 		titleText.setHorizontalAlignment(SwingConstants.CENTER);
-
-		
 		titleText.setOpaque(true);
 		titleText.setBackground(Constants.ribbonColor);
 		
@@ -53,26 +51,10 @@ public class Toast extends JFrame {
 		            			  System.out.println("done");
 		            		  }
 		            	  }
-		            	}, 0, 20, TimeUnit.MILLISECONDS);
-		            	
+		            	}, 0, 20, TimeUnit.MILLISECONDS); 	
 		            }
 		        }, 
 		        800 
 		);
-		
-		
-		/*
-		new Thread(new Runnable() {
-	        public void run(){
-	            for(int i=70; i>2; i--){
-	            	System.out.println(i*0.1f);
-	            	
-	            	setOpacity(i*0.01f);
-	            	
-	            }
-	        }
-	    }).start();*/
-		
 	}
-	
 }

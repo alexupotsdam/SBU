@@ -5,7 +5,7 @@ public class Model extends java.util.Observable{
 
 	List fileList = new ArrayList();
 	
-	List<User> userList = new ArrayList<User>();
+	List<User> userList = new ArrayList<User>(); //oder vllt maps nutzen
 	
 	User a,b;
 
@@ -21,10 +21,8 @@ public class Model extends java.util.Observable{
 	}
 
 	public boolean loginAction(String user, String password) {
-
 		for (User item : userList) {
 			if (item != null) {
-				
 				if(user.equals(item.name)){
 					if(password.equals(item.password)){
 					return true;
@@ -32,13 +30,10 @@ public class Model extends java.util.Observable{
 				}
 			}
 		}
-		
 		return false;
-		
-		
 	}
 	
-	public String[] files(){
+	public String[] files(String username){
 		
 		String fileString[]=new String[99];
 		

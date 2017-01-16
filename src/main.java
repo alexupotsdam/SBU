@@ -18,7 +18,7 @@ public class main {
 		Model model = new Model();
 		
 		Login login = new Login(model);
-	//	View view = new View(model);
+		//View view = new View(model, "a");
 		
 		
 		

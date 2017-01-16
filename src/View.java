@@ -34,6 +34,7 @@ public class View extends JFrame implements java.util.Observer {
 
 	Controller controller;
 	Model model;
+	String username;
 
 	JSeparator seperator;
 
@@ -54,11 +55,12 @@ public class View extends JFrame implements java.util.Observer {
 
 	String file1 = "mixtape.mp3"; // Datei platzhalter
 
-	public View(Model model) {
+	public View(Model model, String username) {
 		this.model = model;
 		controller = new Controller(model, this);
-
 		model.addObserver(this);
+		
+		this.username=username;
 
 		setBounds(60, 60, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
@@ -133,11 +135,11 @@ public class View extends JFrame implements java.util.Observer {
 		panel.removeAll();
 
 		String fileList[] = new String[99];
-		fileList = model.files();
+		fileList = model.files(username);
 
 		int i = 0;
 
-		for (String item : model.files()) {
+		for (String item : fileList) {
 			if (item != null) {
 
 				if (i != 0) {

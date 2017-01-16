@@ -134,10 +134,11 @@ public class Login  extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				//	usernameField.setText("heute nicht");	
 					if(model.loginAction(usernameField.getText(),passwordField.getText())==true){
-						View view=new View(model);
+						View view=new View(model,usernameField.getText());
 						System.out.println("eingelocht");
 					}	else {
-						Toast t= new Toast(windowX+padding, windowY+padding*8,windowWidth-padding*2, padding*13, "Falsche Nutzerdaten");
+						Toast t= new Toast(windowX+padding, windowY+padding*8,windowWidth-padding*2, padding*13,
+								"Falsche Nutzerdaten");
 						
 						
 					}
