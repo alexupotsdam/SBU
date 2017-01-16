@@ -62,7 +62,7 @@ public class View extends JFrame implements java.util.Observer {
 		
 		this.username=username;
 
-		setBounds(60, 60, windowWidth, windowHeight);
+		setBounds(100, 100, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0); // Beenden
@@ -175,7 +175,7 @@ public class View extends JFrame implements java.util.Observer {
 
 	private void createGUI() {
 		// TODO Auto-generated method stub
-		label1 = new JLabel("Kann man hier noch was cooles hinschreiben?");
+		label1 = new JLabel("Weil schöne Software wichtiger als schöner Code ist.");
 		label1.setForeground(Color.white);
 		label1.setFont(new Font("Sans", Font.BOLD, 12));
 		label1.setBounds(padding, padding * 5, 450, 36);
@@ -198,7 +198,7 @@ public class View extends JFrame implements java.util.Observer {
 		uploadButton.setBounds(padding, windowHeight - padding * 5, windowWidth - padding * 2, padding * 4);
 		uploadButton.setBackground(Constants.ribbonColor);
 		uploadButton.setOpaque(true);
-		uploadButton.addActionListener(controller.addFileListener());
+		uploadButton.addActionListener(controller.addFileListener(username, "ficken.mp3"));
 		add(uploadButton);
 	}
 

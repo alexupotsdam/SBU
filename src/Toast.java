@@ -15,7 +15,7 @@ public class Toast extends JFrame {
 	
 	float opacity=0.7f;
 
-	public Toast(int x, int y, int xx, int yy, String text){
+	public Toast(int x, int y, int xx, int yy, Color color, String text){
 		
 		setBounds(x, y, xx, yy);
 		
@@ -27,7 +27,7 @@ public class Toast extends JFrame {
 		titleText.setBounds(0, 0, 200, 20);
 		titleText.setHorizontalAlignment(SwingConstants.CENTER);
 		titleText.setOpaque(true);
-		titleText.setBackground(Constants.ribbonColor);
+		titleText.setBackground(color);
 		
 		add(titleText);
 		

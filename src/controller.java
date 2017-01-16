@@ -31,35 +31,21 @@ public class Controller  implements ActionListener, MouseListener{
         };
     }
 	
-	public ActionListener addFileListener () {
+	public ActionListener addFileListener (final String username, final String filename) {
         return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
-                model.addFile(view.file1);
+                model.addFile(username, filename);
             }
         };
     }
 	
-	public ActionListener addShareFileListener(final int i) {
+	public ActionListener shareFileListener(final int i) {
 		return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
                 model.shareFile(i);
             }
         };
 	}
-	
-	/*
-	public ActionListener fileClickListener () {
-        return new ActionListener() {
-            @Override public void actionPerformed (ActionEvent et) {
-                ContextMenu cm=new ContextMenu();
-                //cm.show(invoker, x, y)
-          //      e.getSource.setComponentPopupMenu(cm);
-            	//.setComponentPopupMenu(cm);
-              //  ((JComponent) et.getSource()).setComponentPopupMenu(cm);
-                cm.show((Component) et.getSource(), 0, 0);
-            }
-        };
-    }*/
 	
 
 	@Override

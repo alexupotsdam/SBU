@@ -39,7 +39,7 @@ public class ContextMenu extends JPopupMenu{
 			add(items[i]);
 		}
 		
-		items[2].addActionListener(controller.addShareFileListener(fileID));
+		items[2].addActionListener(controller.shareFileListener(fileID));
 		
 	}
 	

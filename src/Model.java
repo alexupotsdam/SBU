@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Model extends java.util.Observable{
 
@@ -7,38 +9,40 @@ public class Model extends java.util.Observable{
 	
 	List<User> userList = new ArrayList<User>(); //oder vllt maps nutzen
 	
+	Map<String, User> userMap = new HashMap<String, User>();
+	
+	
 	User a,b;
 
 	public Model() {
-		
-		a = new User("a","a");
-		b = new User("b","b");
-		
-		userList.add(a);
-		userList.add(b);
+		userMap.put("a", new User("a","a"));
+		userMap.put("b", new User("b","b"));
 		
 		System.out.println("Model erstellt");
 	}
 
-	public boolean loginAction(String user, String password) {
-		for (User item : userList) {
-			if (item != null) {
-				if(user.equals(item.name)){
-					if(password.equals(item.password)){
-					return true;
-					}
-				}
+	public boolean loginAction(String username, String password) {
+
+		// if( user.equals(userMap.get(user).name) ) daraus könnte man noch
+		// "user existiert nicht" machen aber
+		// das ist vllt nicht so der Inbegriff von Sicherheit
+		
+		if (userMap.get(username) != null) {
+			if (password.equals(userMap.get(username).password)) {
+				return true;
 			}
 		}
 		return false;
 	}
 	
+
+	
 	public String[] files(String username){
 		
 		String fileString[]=new String[99];
 		
-		for(int i=0; i<fileList.size(); i++){
-			fileString[i]=(String) fileList.get(i);
+		for(int i=0; i<userMap.get(username).fileList.size(); i++){
+			fileString[i]=(String) userMap.get(username).fileList.get(i);
 		}
 		
 		return fileString;
@@ -49,11 +53,10 @@ public class Model extends java.util.Observable{
 		
 	}
 
-	public void addFile(String file) {
+	public void addFile( String username, String file ) {
 		// TODO Auto-generated method stub
-		fileList.add(file);
+		userMap.get(username).fileList.add(file);
 		System.out.println(file+" hochgeladen.");
-		
 		setChanged();
 		notifyObservers();
 	}
