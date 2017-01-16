@@ -30,9 +30,14 @@ public class Login  extends JFrame  {
 	int windowWidth=400;
 	int windowHeight=padding*22;
 	
+	int windowX=100;
+	int windowY=100;
+	
 	int frameOffset;
 	
 	static JPasswordField d;
+	
+	ShakingFrame s;
 	
 	public final static Color backgroundColor      = new Color(250, 250, 250);
 	public final static Color ribbonColor      	= new Color(0, 230,190);
@@ -49,7 +54,10 @@ public class Login  extends JFrame  {
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 	
 	public Login(final Model model) {
-		setBounds(60, 60, windowWidth, windowHeight);
+		
+		 s=new ShakingFrame(this);
+		
+		setBounds(windowX, windowY, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0); // An Exit Listener
@@ -124,11 +132,15 @@ public class Login  extends JFrame  {
 		loginButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-					usernameField.setText("heute nicht");	
-					if(model.loginAction("a","a")==true){
+				//	usernameField.setText("heute nicht");	
+					if(model.loginAction(usernameField.getText(),passwordField.getText())==true){
 						View view=new View(model);
 						System.out.println("eingelocht");
-					}	
+					}	else {
+						Toast t= new Toast(windowX+padding, windowY+padding*8,windowWidth-padding*2, padding*13, "Falsche Nutzerdaten");
+						
+						
+					}
 				}
 			});
 		

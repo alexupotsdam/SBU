@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import ui.Constants;
 import ui.SButton;
@@ -33,6 +34,8 @@ public class View extends JFrame implements java.util.Observer {
 
 	Controller controller;
 	Model model;
+
+	JSeparator seperator;
 
 	JPanel panel;
 	JPanel contentPane;
@@ -128,14 +131,21 @@ public class View extends JFrame implements java.util.Observer {
 
 	public void refreshFileList() {
 		panel.removeAll();
-	
+
 		String fileList[] = new String[99];
 		fileList = model.files();
-		
+
 		int i = 0;
-		
+
 		for (String item : model.files()) {
 			if (item != null) {
+
+				if (i != 0) {
+					JSeparator seperator = new JSeparator(SwingConstants.HORIZONTAL);
+					seperator.setMaximumSize(new Dimension(Integer.MAX_VALUE, 13));
+					panel.add(seperator);
+				}
+
 				filesButtons[i] = new SFileButton(fileList[i], i);
 				panel.add(filesButtons[i]);
 				filesButtons[i].setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));

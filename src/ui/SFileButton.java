@@ -107,11 +107,9 @@ public class SFileButton extends JButton{
 	      /*
 	      g2.drawLine(0, 0, getWidth(), 0);
 	      g2.setPaint( new Color(200, 0, 0));
-	      g2.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);
-	      g2.setPaint( new Color(0, 200, 150));
-	      g2.drawLine(0, getHeight()-1, getWidth(), getHeight()-1);
-	      */
-	      
+	      g2.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);  */
+	//      g2.setPaint( new Color(230, 230, 230));
+	  //    g2.drawLine(Constants.padding*2, getHeight()-2, getWidth(), getHeight()-2);
 
 	      
 	      g2.setRenderingHint(
