@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.BoxLayout;
@@ -129,30 +131,30 @@ public class View extends SFrame implements java.util.Observer {
 	public void refreshFileList() {
 		panel.removeAll();
 
-		String fileList[] = new String[99];
+		//String fileList[] = new String[99];
+		
+		List<String> fileList = new ArrayList<String>();
+		
 		fileList = model.files(username);
 
-		int i = 0;
-
-		for (String item : fileList) {
-			if (item != null) {
-
-				if (i != 0) {
-					JSeparator seperator = new JSeparator(SwingConstants.HORIZONTAL);
-					seperator.setMaximumSize(new Dimension(Integer.MAX_VALUE, 13));
-					panel.add(seperator);
-				}
-
-				filesButtons[i] = new SFileButton(fileList[i], username, i);
-				panel.add(filesButtons[i]);
-				filesButtons[i].setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
-				filesButtons[i].setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
-
-				panel.revalidate();
-
-				filesButtons[i].addMouseListener(controller);
-				i++;
+		int ih = 0;
+		
+		for (int i=0; i<fileList.size(); i++){
+			if (i != 0) {
+				JSeparator seperator = new JSeparator(SwingConstants.HORIZONTAL);
+				seperator.setMaximumSize(new Dimension(Integer.MAX_VALUE, 13));
+				panel.add(seperator);
 			}
+			
+			filesButtons[i] = new SFileButton(fileList.get(i), username, i);
+			panel.add(filesButtons[i]);
+			filesButtons[i].setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
+			filesButtons[i].setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+
+			panel.revalidate();
+
+			filesButtons[i].addMouseListener(controller);
+			
 		}
 
 		panel.repaint();

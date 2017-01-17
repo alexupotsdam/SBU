@@ -40,15 +40,16 @@ public class Model extends java.util.Observable {
 		return false;
 	}
 
-	public String[] files(String username) {
+	public List files(String username) {
 
-		String fileString[] = new String[99];
+	/*	List fileList = new ArrayList();
 
 		for (int i = 0; i < userMap.get(username).fileList.size(); i++) {
 			fileString[i] = (String) userMap.get(username).fileList.get(i);
-		}
+			
+		}*/
 
-		return fileString;
+		return userMap.get(username).fileList;
 	}
 
 	public String[] sharedFiles(String username) {
