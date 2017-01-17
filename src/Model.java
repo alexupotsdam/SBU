@@ -71,6 +71,7 @@ public class Model extends java.util.Observable {
 			System.out.println("Shared file which " + fileID + " equals " + userMap.get(username).fileList.get(fileID)
 					+ "with " + username2);
 
+			setChanged();
 			notifyObservers();
 			
 			for (String temp : userMap.get(username2).sharedList) {

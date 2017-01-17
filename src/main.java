@@ -11,10 +11,7 @@ public class main {
 
 		System.out.println("TODO: Sharedbox Ultimate fertig machen");
 		
-		//NEW hintergrundkram
-		//Loginwindow in ne Klasse schieben
-		//LoginView view = new LoginView("SharedBox Ultimate - Share Your Stuff!"); 
-		
+
 		Model model = new Model();
 		
 		Login login = new Login(model);

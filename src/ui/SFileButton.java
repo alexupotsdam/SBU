@@ -32,7 +32,7 @@ public class SFileButton extends JButton{
 		
 		this.username=username;
 		this.fileID=fileID;
-		System.out.println("created "+fileID);
+		//System.out.println("created "+fileID);
 		
 		if(string!=null){
  

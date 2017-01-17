@@ -48,13 +48,10 @@ public class View extends SFrame implements java.util.Observer {
 	static JLabel titleText, label1;
 	static JPanel topRibbon; // Sharedbox Überschrift Hintergrund
 
-	//static SFileButton filesButtons[] = new SFileButton[999]; // TODO
-																// vernünftiges
-																// Format vllt
-																// Liste
-	
-	
-	
+	// static SFileButton filesButtons[] = new SFileButton[999]; // TODO
+	// vernünftiges
+	// Format vllt
+	// Liste
 
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 
@@ -64,8 +61,8 @@ public class View extends SFrame implements java.util.Observer {
 		this.model = model;
 		controller = new Controller(model, this);
 		model.addObserver(this);
-		
-		this.username=username;
+
+		this.username = username;
 
 		setBounds(100, 100, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
@@ -134,48 +131,49 @@ public class View extends SFrame implements java.util.Observer {
 	public void refreshFileList() {
 		panel.removeAll();
 		List<SFileButton> fileButtons = new ArrayList<SFileButton>();
-		
+
 		List<String> fileList = new ArrayList<String>();
 		fileList = model.files(username);
 
-		for (int i=0; i<fileList.size(); i++){
-			if (i != 0) {
-				addSeperator(1);
+		if (fileList.size() == 0) {
+			System.out.println("empty");
+		} else {
+
+			for (int i = 0; i < fileList.size(); i++) {
+				if (i != 0) {
+					addSeperator(1);
+				}
+				fileButtons.add(new SFileButton(fileList.get(i), username, i));
+				panel.add(fileButtons.get(i));
+				fileButtons.get(i).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
+				fileButtons.get(i).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+				fileButtons.get(i).addMouseListener(controller);
 			}
-			
-			fileButtons.add(new SFileButton(fileList.get(i), username, i));
-			panel.add(fileButtons.get(i));
-			fileButtons.get(i).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
-			fileButtons.get(i).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
-			fileButtons.get(i).addMouseListener(controller);
-			
-			System.out.println("file  "+fileList.get(i));
-		
 		}
-		
+
 		List<String> sharedList = new ArrayList<String>();
 		sharedList = model.sharedFiles(username);
-		
-		if(sharedList.size()==0){System.out.println("empty");} else {
-			
-		addSeperator(1);
-		
-		int listOffset=fileList.size();
-		
-		for (int i=0; i<sharedList.size(); i++){
-		
+
+		if (sharedList.size() == 0) {
+			System.out.println("empty");
+		} else {
+
+			addSeperator(1);
+
+			int listOffset = fileList.size();
+
+			for (int i = 0; i < sharedList.size(); i++) {
+
 				addSeperator(1);
-			
-			fileButtons.add(new SFileButton(sharedList.get(i), username, 999));
-			panel.add(fileButtons.get(i+listOffset));
-			fileButtons.get(i+listOffset).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
-			fileButtons.get(i+listOffset).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
-			fileButtons.get(i+listOffset).addMouseListener(controller);
-			
-			System.out.println("share "+sharedList.get(i));
-			
-		}
-		
+
+				fileButtons.add(new SFileButton(sharedList.get(i), username, i + listOffset));
+				panel.add(fileButtons.get(i + listOffset));
+				fileButtons.get(i + listOffset).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
+				fileButtons.get(i + listOffset).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+				fileButtons.get(i + listOffset).addMouseListener(controller);
+
+			}
+
 		}
 		panel.repaint();
 		panel.revalidate();
@@ -187,9 +185,9 @@ public class View extends SFrame implements java.util.Observer {
 		System.out.println("View Update observed");
 		repaint();
 	}
-	
-	public void addSeperator(int j){
-		for(int i=0; i<j; i++){
+
+	public void addSeperator(int j) {
+		for (int i = 0; i < j; i++) {
 			JSeparator seperator = new JSeparator(SwingConstants.HORIZONTAL);
 			seperator.setMaximumSize(new Dimension(Integer.MAX_VALUE, 13));
 			panel.add(seperator);
