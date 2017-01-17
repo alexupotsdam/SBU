@@ -61,7 +61,7 @@ public class SFileButton extends JButton{
 		text=string;
 		}
 		
-		System.out.println("file "+text);
+		//System.out.println("file "+text);
 		setup();
 		
 		

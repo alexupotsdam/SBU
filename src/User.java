@@ -4,8 +4,8 @@ import java.util.List;
 
 public class User {
 
-	List fileList = new ArrayList();
-	List sharedList = new ArrayList();
+	List<String> fileList = new ArrayList<String>();
+	List<String> sharedList = new ArrayList<String>();
 	
 	public String name, password;
 	

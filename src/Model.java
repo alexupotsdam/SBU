@@ -41,26 +41,11 @@ public class Model extends java.util.Observable {
 	}
 
 	public List files(String username) {
-
-	/*	List fileList = new ArrayList();
-
-		for (int i = 0; i < userMap.get(username).fileList.size(); i++) {
-			fileString[i] = (String) userMap.get(username).fileList.get(i);
-			
-		}*/
-
 		return userMap.get(username).fileList;
 	}
 
-	public String[] sharedFiles(String username) {
-
-		String fileString[] = new String[99];
-
-		for (int i = 0; i < userMap.get(username).sharedList.size(); i++) {
-			fileString[i] = (String) userMap.get(username).sharedList.get(i);
-		}
-
-		return fileString;
+	public List sharedFiles(String username) {
+		return userMap.get(username).sharedList;
 	}
 
 	public void deleteSomething() {
@@ -86,14 +71,12 @@ public class Model extends java.util.Observable {
 			System.out.println("Shared file which " + fileID + " equals " + userMap.get(username).fileList.get(fileID)
 					+ "with " + username2);
 
-			String fileListd[] = new String[99];
-			fileListd = sharedFiles(username2);
-
-			for (String item : fileListd) {
-				if (item != null) {
-					System.out.println(item);
-				}
+			notifyObservers();
+			
+			for (String temp : userMap.get(username2).sharedList) {
+				System.out.println(temp);
 			}
+			
 		}
 		return true;
 	}

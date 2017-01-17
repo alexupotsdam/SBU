@@ -48,10 +48,13 @@ public class View extends SFrame implements java.util.Observer {
 	static JLabel titleText, label1;
 	static JPanel topRibbon; // Sharedbox Überschrift Hintergrund
 
-	static SFileButton filesButtons[] = new SFileButton[999]; // TODO
+	//static SFileButton filesButtons[] = new SFileButton[999]; // TODO
 																// vernünftiges
 																// Format vllt
 																// Liste
+	
+	
+	
 
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 
@@ -130,36 +133,52 @@ public class View extends SFrame implements java.util.Observer {
 
 	public void refreshFileList() {
 		panel.removeAll();
-
-		//String fileList[] = new String[99];
+		List<SFileButton> fileButtons = new ArrayList<SFileButton>();
 		
 		List<String> fileList = new ArrayList<String>();
-		
 		fileList = model.files(username);
 
-		int ih = 0;
-		
 		for (int i=0; i<fileList.size(); i++){
 			if (i != 0) {
-				JSeparator seperator = new JSeparator(SwingConstants.HORIZONTAL);
-				seperator.setMaximumSize(new Dimension(Integer.MAX_VALUE, 13));
-				panel.add(seperator);
+				addSeperator(1);
 			}
 			
-			filesButtons[i] = new SFileButton(fileList.get(i), username, i);
-			panel.add(filesButtons[i]);
-			filesButtons[i].setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
-			filesButtons[i].setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
-
-			panel.revalidate();
-
-			filesButtons[i].addMouseListener(controller);
+			fileButtons.add(new SFileButton(fileList.get(i), username, i));
+			panel.add(fileButtons.get(i));
+			fileButtons.get(i).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
+			fileButtons.get(i).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+			fileButtons.get(i).addMouseListener(controller);
+			
+			System.out.println("file  "+fileList.get(i));
+		
+		}
+		
+		List<String> sharedList = new ArrayList<String>();
+		sharedList = model.sharedFiles(username);
+		
+		if(sharedList.size()==0){System.out.println("empty");} else {
+			
+		addSeperator(1);
+		
+		int listOffset=fileList.size();
+		
+		for (int i=0; i<sharedList.size(); i++){
+		
+				addSeperator(1);
+			
+			fileButtons.add(new SFileButton(sharedList.get(i), username, 999));
+			panel.add(fileButtons.get(i+listOffset));
+			fileButtons.get(i+listOffset).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
+			fileButtons.get(i+listOffset).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+			fileButtons.get(i+listOffset).addMouseListener(controller);
+			
+			System.out.println("share "+sharedList.get(i));
 			
 		}
-
+		
+		}
 		panel.repaint();
-		System.out.println("View file list refreshed");
-		System.out.println("height" + panel.getHeight());
+		panel.revalidate();
 	}
 
 	@Override
@@ -167,6 +186,14 @@ public class View extends SFrame implements java.util.Observer {
 		refreshFileList();
 		System.out.println("View Update observed");
 		repaint();
+	}
+	
+	public void addSeperator(int j){
+		for(int i=0; i<j; i++){
+			JSeparator seperator = new JSeparator(SwingConstants.HORIZONTAL);
+			seperator.setMaximumSize(new Dimension(Integer.MAX_VALUE, 13));
+			panel.add(seperator);
+		}
 	}
 
 	private void createGUI() {
