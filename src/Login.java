@@ -90,10 +90,10 @@ public class Login extends SFrame {
 		        if (model.loginAction(usernameField.getText(), passwordField.getText()) == true) {
 					View view = new View(model, usernameField.getText());
 					System.out.println("eingelocht");
-					Toast t = new Toast(windowX + padding, windowY + padding * 8, 800 - padding * 2,
-							padding * 30, Constants.ribbonColor, "Eingeloggt");
+				//	Toast t = new Toast(self().getX() + padding, self().getY() + padding * 8, 800 - padding * 2,
+					//		padding * 30, Constants.ribbonColor, "Eingeloggt");
 				} else {
-					Toast t = new Toast(windowX + padding, windowY + padding * 8, windowWidth - padding * 2,
+					Toast t = new Toast(self().getX() + padding, self().getY() + padding * 8, windowWidth - padding * 2,
 							padding * 13, Constants.redColor, "Falsche Nutzerdaten");
 
 				}

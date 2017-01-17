@@ -124,8 +124,13 @@ public class View extends SFrame implements java.util.Observer {
 		contentPane.setBounds(padding, padding * 8, windowWidth - padding * 2, padding * 30);
 		getContentPane().add(contentPane);
 		// pack();
+		
+		
 
 		setVisible(true);
+		
+		Toast t = new Toast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,
+				Constants.padding * 30, Constants.ribbonColor, "Eingeloggt");
 
 	}
 
