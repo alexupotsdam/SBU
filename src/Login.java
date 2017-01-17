@@ -8,6 +8,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +25,9 @@ import ui.Toast;
 
 //auf VCM verzichten da nichts zu tun is
 @SuppressWarnings("serial")
-public class Login extends JFrame {
+public class Login extends SFrame {
+	
+	Model model;
 
 	private int X = 0;
 	private int Y = 0;
@@ -42,9 +46,6 @@ public class Login extends JFrame {
 
 	ShakingFrame s;
 
-	public final static Color backgroundColor = new Color(250, 250, 250);
-	public final static Color ribbonColor = new Color(0, 230, 190);
-
 	static SButton closeButton, loginButton;
 
 	static JLabel titleText, label1;
@@ -57,8 +58,8 @@ public class Login extends JFrame {
 
 	public Login(final Model model) {
 
-		s = new ShakingFrame(this);
-
+		this.model=model;
+		
 		setBounds(windowX, windowY, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -79,10 +80,25 @@ public class Login extends JFrame {
 				setLocation(getLocation().x + (e.getX() - X), getLocation().y + (e.getY() - Y));
 			}
 		});
+		
+		Action action = new AbstractAction()
+		{
+		    @Override
+		    public void actionPerformed(ActionEvent e)
+		    {
+		        System.out.println("some action");
+		        if (model.loginAction(usernameField.getText(), passwordField.getText()) == true) {
+					View view = new View(model, usernameField.getText());
+					System.out.println("eingelocht");
+					Toast t = new Toast(windowX + padding, windowY + padding * 8, 800 - padding * 2,
+							padding * 30, Constants.ribbonColor, "Eingeloggt");
+				} else {
+					Toast t = new Toast(windowX + padding, windowY + padding * 8, windowWidth - padding * 2,
+							padding * 13, Constants.redColor, "Falsche Nutzerdaten");
 
-		getContentPane().setLayout(null);
-		getContentPane().setBackground(backgroundColor);
-		setUndecorated(true);
+				}
+		    }
+		};
 
 		label1 = new JLabel("Bitte loggen sie sich ein.");
 		label1.setForeground(Color.white);
@@ -111,11 +127,11 @@ public class Login extends JFrame {
 		});
 
 		topRibbon = new JPanel();
-		topRibbon.setBackground(ribbonColor);
+		topRibbon.setBackground(Constants.ribbonColor);
 		topRibbon.setBounds(0, 0, windowWidth, padding * 7);
 		add(topRibbon);
 
-		usernameField = new STextField("Benutzername");
+		usernameField = new STextField("Benutzername",Color.darkGray);
 		passwordField = new SPasswordField("Passwort");
 
 		add(usernameField);
@@ -124,32 +140,22 @@ public class Login extends JFrame {
 		add(passwordField);
 		passwordField.setBounds(padding, padding * 13, windowWidth - padding * 2, padding * 2);
 
+		
+		passwordField.addActionListener(action);
+		
 		loginButton = new SButton("login");
 		loginButton.setBounds(padding, padding * 17, windowWidth - padding * 2, padding * 4);
-		loginButton.setBackground(ribbonColor);
+		loginButton.setBackground(Constants.ribbonColor);
 		loginButton.setOpaque(true);
-
-		loginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// usernameField.setText("heute nicht");
-
-				if (model.loginAction(usernameField.getText(), passwordField.getText()) == true) {
-					View view = new View(model, usernameField.getText());
-					System.out.println("eingelocht");
-					Toast t = new Toast(windowX + padding, windowY + padding * 8, 800 - padding * 2,
-							padding * 30, Constants.ribbonColor, "Eingeloggt");
-				} else {
-					Toast t = new Toast(windowX + padding, windowY + padding * 8, windowWidth - padding * 2,
-							padding * 13, Constants.redColor, "Falsche Nutzerdaten");
-
-				}
-			}
-
-		});
+		loginButton.addActionListener(action);
+		
+		
+		
 
 		add(loginButton);
-
+		
+		
 		setVisible(true);
 	}
-
+	
 }

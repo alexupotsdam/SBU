@@ -23,7 +23,7 @@ import ui.SButton;
 import ui.SFileButton;
 
 @SuppressWarnings("serial")
-public class View extends JFrame implements java.util.Observer {
+public class View extends SFrame implements java.util.Observer {
 
 	private int X = 0;
 	private int Y = 0;
@@ -82,10 +82,7 @@ public class View extends JFrame implements java.util.Observer {
 			}
 		});
 
-		getContentPane().setLayout(null);
-		getContentPane().setBackground(Constants.backgroundColor);
-		setUndecorated(true); // eklige 90er Java Look and Feels und Titelleiste
-								// loswerden
+		
 
 		closeButton = new SButton();
 		add(closeButton);

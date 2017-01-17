@@ -9,11 +9,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 
+@SuppressWarnings("serial")
 public class STextField extends JTextField{
 
-	private static final long serialVersionUID = 246494772035087712L;
-
-	public STextField(String string) {
+	public STextField(String string, final Color color) {
 		// TODO Auto-generated constructor stub
 		setText(string);
 		
@@ -27,7 +26,7 @@ public class STextField extends JTextField{
 		    }
 		    public void insertUpdate(DocumentEvent e) {
 		        // TODO Auto-generated method stub  
-		    	setForeground(Color.darkGray);
+		    	setForeground(color);
 		    }
 		    public void changedUpdate(DocumentEvent e) {
 		        // TODO Auto-generated method stub

@@ -43,7 +43,9 @@ public class Controller  implements ActionListener, MouseListener{
 	public ActionListener shareFileListener(final String username, final String username2, final int i) {
 		return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
-                model.shareFile(username, username2, i);
+               // model.shareFile(username, username2, i);
+            	ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 200 + Constants.padding * 8, 600 - Constants.padding * 2,
+            			Constants.padding * 20);
             }
         };
 	}
