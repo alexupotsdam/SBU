@@ -158,7 +158,6 @@ public class View extends SFrame implements java.util.Observer {
 		panel.repaint();
 		System.out.println("View file list refreshed");
 		System.out.println("height" + panel.getHeight());
-
 	}
 
 	@Override
