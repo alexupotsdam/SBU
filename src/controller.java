@@ -8,6 +8,7 @@ import javax.swing.JComponent;
 
 import ui.Constants;
 import ui.SFileButton;
+import ui.Toast;
 
 
 public class Controller  implements ActionListener, MouseListener{
@@ -40,16 +41,44 @@ public class Controller  implements ActionListener, MouseListener{
         };
     }
 	
-	public ActionListener shareFileListener(final String username, final String username2, final int i) {
+	public ActionListener shareFileButtonListener(final String username, final int i) {
 		return new ActionListener() {
+			
             @Override public void actionPerformed (ActionEvent e) {
                // model.shareFile(username, username2, i);
-            	ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 200 + Constants.padding * 8, 600 - Constants.padding * 2,
-            			Constants.padding * 20);
+            	
+            	createShareWindow(username, i);
+            	
+            	//ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 200 + Constants.padding * 8, 600 - Constants.padding * 2,
+            		//	Constants.padding * 20, this);
             }
         };
 	}
 	
+	public void createShareWindow(final String username, final int i){
+		ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 200 + Constants.padding * 8, 600 - Constants.padding * 2,
+        			Constants.padding * 20, username, i, this);
+	}
+	
+	public ActionListener shareFileListener(final String username, final String username2, final int i){
+			return new ActionListener() {
+				@Override public void actionPerformed (ActionEvent e) {
+            	model.shareFile(username, username2, i);
+				}
+			};
+	}
+	
+	public void shareFile(final String username, final String username2, final int i){
+		if(model.shareFile(username, username2, i)){
+			System.out.println("Success");
+			Toast t = new Toast(Constants.windowX + Constants.padding, Constants.windowY + Constants.padding * 8, 800 - Constants.padding * 2,
+					Constants.padding * 30, Constants.ribbonColor, "Datei geteilt");
+		} else {
+			System.out.println("No such user");
+			Toast t = new Toast(Constants.windowX + Constants.padding, Constants.windowY + Constants.padding * 8, 800 - Constants.padding * 2,
+					Constants.padding * 30, Constants.redColor, "Benutzer nicht gefunden");
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

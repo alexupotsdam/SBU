@@ -105,7 +105,6 @@ public class Login extends SFrame {
 		label1.setFont(new Font("Sans", Font.BOLD, 12));
 		label1.setBounds(padding, padding * 5, 450, 36);
 
-		// label1.setHorizontalAlignment(SwingConstants.CENTER);
 		label1.setVerticalAlignment(SwingConstants.NORTH);
 		add(label1);
 
@@ -136,24 +135,19 @@ public class Login extends SFrame {
 
 		add(usernameField);
 		usernameField.setBounds(padding, padding * 9, windowWidth - padding * 2, padding * 2);
+		usernameField.addActionListener(action);
 
 		add(passwordField);
 		passwordField.setBounds(padding, padding * 13, windowWidth - padding * 2, padding * 2);
-
-		
 		passwordField.addActionListener(action);
 		
 		loginButton = new SButton("login");
 		loginButton.setBounds(padding, padding * 17, windowWidth - padding * 2, padding * 4);
 		loginButton.setBackground(Constants.ribbonColor);
 		loginButton.setOpaque(true);
-		loginButton.addActionListener(action);
-		
-		
-		
+		loginButton.addActionListener(action);		
 
 		add(loginButton);
-		
 		
 		setVisible(true);
 	}

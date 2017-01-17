@@ -13,5 +13,8 @@ public class Constants {
 	static Color textColor = new Color(100,100,100);
 	
 	public static int padding=14;
+	
+	public static int windowX=100;
+	public static int windowY=100;
 
 }

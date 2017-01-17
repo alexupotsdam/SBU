@@ -82,8 +82,6 @@ public class View extends SFrame implements java.util.Observer {
 			}
 		});
 
-		
-
 		closeButton = new SButton();
 		add(closeButton);
 		closeButton.setBounds(windowWidth - 40, -42 + padding * 3, 40, 40);

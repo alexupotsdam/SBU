@@ -9,21 +9,20 @@ import javax.swing.SwingConstants;
 
 import ui.SFileButton;
 
-public class Model extends java.util.Observable{
+public class Model extends java.util.Observable {
 
 	List fileList = new ArrayList();
-	
-	List<User> userList = new ArrayList<User>(); //oder vllt maps nutzen
-	
+
+	List<User> userList = new ArrayList<User>(); // oder vllt maps nutzen
+
 	Map<String, User> userMap = new HashMap<String, User>();
-	
-	
-	User a,b;
+
+	User a, b;
 
 	public Model() {
-		userMap.put("a", new User("a","a"));
-		userMap.put("b", new User("b","b"));
-		
+		userMap.put("a", new User("a", "a"));
+		userMap.put("b", new User("b", "b"));
+
 		System.out.println("Model erstellt");
 	}
 
@@ -32,7 +31,7 @@ public class Model extends java.util.Observable{
 		// if( user.equals(userMap.get(user).name) ) daraus könnte man noch
 		// "user existiert nicht" machen aber
 		// das ist vllt nicht so der Inbegriff von Sicherheit
-		
+
 		if (userMap.get(username) != null) {
 			if (password.equals(userMap.get(username).password)) {
 				return true;
@@ -40,62 +39,62 @@ public class Model extends java.util.Observable{
 		}
 		return false;
 	}
-	
 
-	
-	public String[] files(String username){
-		
-		String fileString[]=new String[99];
-		
-		for(int i=0; i<userMap.get(username).fileList.size(); i++){
-			fileString[i]=(String) userMap.get(username).fileList.get(i);
+	public String[] files(String username) {
+
+		String fileString[] = new String[99];
+
+		for (int i = 0; i < userMap.get(username).fileList.size(); i++) {
+			fileString[i] = (String) userMap.get(username).fileList.get(i);
 		}
-		
+
 		return fileString;
 	}
-	
-	public String[] sharedFiles(String username){
-		
-		String fileString[]=new String[99];
 
-		for(int i=0; i<userMap.get(username).sharedList.size(); i++){
-			fileString[i]=(String) userMap.get(username).sharedList.get(i);
+	public String[] sharedFiles(String username) {
+
+		String fileString[] = new String[99];
+
+		for (int i = 0; i < userMap.get(username).sharedList.size(); i++) {
+			fileString[i] = (String) userMap.get(username).sharedList.get(i);
 		}
-	
-	return fileString;
+
+		return fileString;
 	}
-	
+
 	public void deleteSomething() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void addFile( String username, String file ) {
+	public void addFile(String username, String file) {
 		// TODO Auto-generated method stub
 		userMap.get(username).fileList.add(file);
-		System.out.println(file+" hochgeladen.");
+		System.out.println(file + " hochgeladen.");
 		setChanged();
 		notifyObservers();
 	}
 
-	public void shareFile( String username, String username2, int fileID) {
+	public boolean shareFile(String username, String username2, int fileID) {
 		// TODO Auto-generated method stub
-		System.out.println("Shared file which"+fileID+" equals "+userMap.get(username).fileList.get(fileID));
-		
-		userMap.get(username2).sharedList.add(userMap.get(username).fileList.get(fileID));
-		
-		String fileListd[] = new String[99];
-		fileListd = sharedFiles(username2);
 
-		
-		for (String item : fileListd) {
-			if (item != null) {
+		if (userMap.get(username2) == null) {
+			return false;
+		} else {
+			userMap.get(username2).sharedList.add(userMap.get(username).fileList.get(fileID));
+			System.out.println("Shared file which " + fileID + " equals " + userMap.get(username).fileList.get(fileID)
+					+ "with " + username2);
 
-				System.out.println(item);
-				
+			String fileListd[] = new String[99];
+			fileListd = sharedFiles(username2);
+
+			for (String item : fileListd) {
+				if (item != null) {
+					System.out.println(item);
+				}
 			}
 		}
-		
+		return true;
 	}
 
 }
