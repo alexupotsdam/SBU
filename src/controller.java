@@ -35,14 +35,15 @@ public class Controller  implements ActionListener, MouseListener{
         return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
                 model.addFile(username, filename);
+               // e.getSource()
             }
         };
     }
 	
-	public ActionListener shareFileListener(final int i) {
+	public ActionListener shareFileListener(final String username, final String username2, final int i) {
 		return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
-                model.shareFile(i);
+                model.shareFile(username, username2, i);
             }
         };
 	}
@@ -61,8 +62,10 @@ public class Controller  implements ActionListener, MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		 ContextMenu cm=new ContextMenu(this, e.getSource(), ((SFileButton) e.getSource()).getID());
-         cm.show((Component) e.getSource(), e.getX(), e.getY());
+		 ContextMenu cm=new ContextMenu(this, e.getSource(),  
+				 ((SFileButton) e.getSource()).getUsername(),  ((SFileButton) e.getSource()).getID());
+         
+		 cm.show((Component) e.getSource(), e.getX(), e.getY());
          
          
 	}

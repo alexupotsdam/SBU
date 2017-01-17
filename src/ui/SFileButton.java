@@ -22,13 +22,15 @@ public class SFileButton extends JButton{
 	URL resource;
 	
 	String text;
+	String username;
 	
 	public int fileID;
 	
 
-	public SFileButton(String string, int fileID) {
+	public SFileButton(String string, String username, int fileID) {
 		// TODO Auto-generated constructor stub
 		
+		this.username=username;
 		this.fileID=fileID;
 		System.out.println("created "+fileID);
 		
@@ -132,5 +134,9 @@ public class SFileButton extends JButton{
 
 	public int getID(){
 		return fileID;
+	}
+	
+	public String getUsername(){
+		return username;
 	}
 }

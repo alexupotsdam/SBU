@@ -61,9 +61,9 @@ public class Model extends java.util.Observable{
 		notifyObservers();
 	}
 
-	public void shareFile(int fileID) {
+	public void shareFile( String username, String username2, int fileID) {
 		// TODO Auto-generated method stub
-		System.out.println("Shared file "+fileID+" equals "+fileList.get(fileID));
+		System.out.println("Shared file which"+fileID+" equals "+userMap.get(username).fileList.get(fileID));
 	}
 
 }

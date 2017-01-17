@@ -148,7 +148,7 @@ public class View extends JFrame implements java.util.Observer {
 					panel.add(seperator);
 				}
 
-				filesButtons[i] = new SFileButton(fileList[i], i);
+				filesButtons[i] = new SFileButton(fileList[i], username, i);
 				panel.add(filesButtons[i]);
 				filesButtons[i].setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
 				filesButtons[i].setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));

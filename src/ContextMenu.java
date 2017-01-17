@@ -16,12 +16,12 @@ public class ContextMenu extends JPopupMenu{
 	int windowHeight=Constants.padding*4;
 	
 	int fileID;
-	String ficken="asdf";
+	String ficken="b";
 	
 	JMenuItem items[]=new JMenuItem[6];
 	
 			
-	public ContextMenu(Controller controller, Object object, int fileID){
+	public ContextMenu(Controller controller, Object object, String username, int fileID){
 		//System.out.println("ContextMenu for "+object+" created.");
 		
 		this.fileID=fileID;
@@ -39,7 +39,7 @@ public class ContextMenu extends JPopupMenu{
 			add(items[i]);
 		}
 		
-		items[2].addActionListener(controller.shareFileListener(fileID));
+		items[2].addActionListener(controller.shareFileListener(username, ficken, fileID));
 		
 	}
 	
