@@ -152,4 +152,8 @@ public class Login extends SFrame {
 		setVisible(true);
 	}
 	
+	public Login self(){
+		return this;
+	}
+	
 }

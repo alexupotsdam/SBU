@@ -71,11 +71,11 @@ public class Controller  implements ActionListener, MouseListener{
 	public void shareFile(final String username, final String username2, final int i){
 		if(model.shareFile(username, username2, i)){
 			System.out.println("Success");
-			Toast t = new Toast(Constants.windowX + Constants.padding, Constants.windowY + Constants.padding * 8, 800 - Constants.padding * 2,
+			Toast t = new Toast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
 					Constants.padding * 30, Constants.ribbonColor, "Datei geteilt");
 		} else {
 			System.out.println("No such user");
-			Toast t = new Toast(Constants.windowX + Constants.padding, Constants.windowY + Constants.padding * 8, 800 - Constants.padding * 2,
+			Toast t = new Toast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
 					Constants.padding * 30, Constants.redColor, "Benutzer nicht gefunden");
 		}
 	}

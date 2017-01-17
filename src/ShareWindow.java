@@ -62,5 +62,10 @@ public class ShareWindow extends SFrame {
 
 	}
 	
+	public ShareWindow self(){
+		return this;
+		
+	}
+	
 	
 }

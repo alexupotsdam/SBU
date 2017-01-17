@@ -58,7 +58,7 @@ public class Model extends java.util.Observable {
 		userMap.get(username).fileList.add(file);
 		System.out.println(file + " hochgeladen.");
 		setChanged();
-		notifyObservers();
+		notifyObservers("Datei hinzugefügt.");
 	}
 
 	public boolean shareFile(String username, String username2, int fileID) {
@@ -72,7 +72,10 @@ public class Model extends java.util.Observable {
 					+ "with " + username2);
 
 			setChanged();
-			notifyObservers();
+			
+
+			
+			notifyObservers("Neue Datei erhalten.");
 			
 			for (String temp : userMap.get(username2).sharedList) {
 				System.out.println(temp);

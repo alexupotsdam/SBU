@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import ui.Constants;
 import ui.SButton;
 import ui.SFileButton;
+import ui.Toast;
 
 @SuppressWarnings("serial")
 public class View extends SFrame implements java.util.Observer {
@@ -184,6 +185,10 @@ public class View extends SFrame implements java.util.Observer {
 		refreshFileList();
 		System.out.println("View Update observed");
 		repaint();
+		
+		Toast t = new Toast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,
+				Constants.padding * 30, Constants.ribbonColor,  arg.toString());
+		
 	}
 
 	public void addSeperator(int j) {
