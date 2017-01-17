@@ -1,3 +1,4 @@
+package ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.concurrent.Executors;
@@ -8,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import ui.Constants;
 
 
 public class Toast extends JFrame {

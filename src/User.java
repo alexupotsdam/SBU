@@ -5,6 +5,7 @@ import java.util.List;
 public class User {
 
 	List fileList = new ArrayList();
+	List sharedList = new ArrayList();
 	
 	public String name, password;
 	
@@ -13,7 +14,6 @@ public class User {
 		
 		this.name=name;
 		this.password=password;
-		
 		
 		fileList.add("gdfihlu.png");
 		fileList.add("iuhdsf.mp3");

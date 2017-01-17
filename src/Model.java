@@ -1,7 +1,13 @@
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+import ui.SFileButton;
 
 public class Model extends java.util.Observable{
 
@@ -47,7 +53,18 @@ public class Model extends java.util.Observable{
 		
 		return fileString;
 	}
+	
+	public String[] sharedFiles(String username){
+		
+		String fileString[]=new String[99];
 
+		for(int i=0; i<userMap.get(username).sharedList.size(); i++){
+			fileString[i]=(String) userMap.get(username).sharedList.get(i);
+		}
+	
+	return fileString;
+	}
+	
 	public void deleteSomething() {
 		// TODO Auto-generated method stub
 		
@@ -64,6 +81,21 @@ public class Model extends java.util.Observable{
 	public void shareFile( String username, String username2, int fileID) {
 		// TODO Auto-generated method stub
 		System.out.println("Shared file which"+fileID+" equals "+userMap.get(username).fileList.get(fileID));
+		
+		userMap.get(username2).sharedList.add(userMap.get(username).fileList.get(fileID));
+		
+		String fileListd[] = new String[99];
+		fileListd = sharedFiles(username2);
+
+		
+		for (String item : fileListd) {
+			if (item != null) {
+
+				System.out.println(item);
+				
+			}
+		}
+		
 	}
 
 }
