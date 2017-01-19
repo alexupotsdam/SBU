@@ -26,7 +26,7 @@ import ui.SFileButton;
 import ui.Toast;
 
 @SuppressWarnings("serial")
-public class View extends SFrame implements java.util.Observer {
+public class View extends SFrame  {
 
 	private int X = 0;
 	private int Y = 0;
@@ -61,7 +61,6 @@ public class View extends SFrame implements java.util.Observer {
 	public View(Model model, String username) {
 		this.model = model;
 		controller = new Controller(model, this);
-		model.addObserver(this);
 		
 		model.addListener(username, this);
 
@@ -187,17 +186,6 @@ public class View extends SFrame implements java.util.Observer {
 		panel.revalidate();
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		refreshFileList();
-		System.out.println("View Update observed");
-		repaint();
-		
-		Toast t = new Toast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,
-				Constants.padding * 30, Constants.ribbonColor,  arg.toString());
-		
-	}
-
 	public void addSeperator(int j) {
 		for (int i = 0; i < j; i++) {
 			JSeparator seperator = new JSeparator(SwingConstants.HORIZONTAL);
@@ -235,8 +223,12 @@ public class View extends SFrame implements java.util.Observer {
 		add(uploadButton);
 	}
 	
-	public void info(String s){
-		System.out.println(s);
+	public void notify(String s){
+		
+		refreshFileList();
+		System.out.println("View Update observed");
+		repaint();
+		
 		Toast t = new Toast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,
 				Constants.padding * 30, Constants.ribbonColor,  s);
 	}

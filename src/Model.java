@@ -9,7 +9,7 @@ import javax.swing.SwingConstants;
 
 import ui.SFileButton;
 
-public class Model extends java.util.Observable {
+public class Model {
 
 	List fileList = new ArrayList();
 
@@ -59,9 +59,8 @@ public class Model extends java.util.Observable {
 	public void addFile(String username, String file) {
 		// TODO Auto-generated method stub
 		userMap.get(username).fileList.add(file);
-		System.out.println(file + " hochgeladen.");
-	//	setChanged();
-		//notifyObservers("Datei hinzugefügt.");
+	//	System.out.println(file + " hochgeladen.");
+		viewMap.get(username).notify("Datei '"+file+"' hochgeladen.");
 	}
 
 	public boolean shareFile(String username, String username2, int fileID) {
@@ -74,12 +73,9 @@ public class Model extends java.util.Observable {
 			System.out.println("Shared file which " + fileID + " equals " + userMap.get(username).fileList.get(fileID)
 					+ "with " + username2);
 
-			//setChanged();
 			
-		//	notifyObservers("Neue Datei erhalten.");
-			
-			viewMap.get(username).info("Datei mit Nutzer '"+username2+"' geteilt");
-			viewMap.get(username2).info("Datei '"+userMap.get(username).fileList.get(fileID)+"' von Nutzer '"+username+"' erhalten");
+			viewMap.get(username).notify("Datei mit Nutzer '"+username2+"' geteilt");
+			viewMap.get(username2).notify("Datei '"+userMap.get(username).fileList.get(fileID)+"' von Nutzer '"+username+"' erhalten");
 			
 			
 			for (String temp : userMap.get(username2).sharedList) {
