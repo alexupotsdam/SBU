@@ -1,11 +1,5 @@
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.border.Border;
-
 import ui.Constants;
 
 

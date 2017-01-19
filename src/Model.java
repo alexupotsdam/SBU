@@ -75,6 +75,8 @@ public class Model {
 
 			
 			viewMap.get(username).notify("Datei mit Nutzer '"+username2+"' geteilt");
+			
+			if(viewMap.get(username2)!=null)
 			viewMap.get(username2).notify("Datei '"+userMap.get(username).fileList.get(fileID)+"' von Nutzer '"+username+"' erhalten");
 			
 			

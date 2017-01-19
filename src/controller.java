@@ -4,11 +4,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import ui.Constants;
 import ui.SFileButton;
-import ui.Toast;
 
 
 public class Controller  implements ActionListener, MouseListener{
@@ -78,6 +77,10 @@ public class Controller  implements ActionListener, MouseListener{
 	//		Toast t = new Toast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
 		//			Constants.padding * 30, Constants.redColor, "Benutzer nicht gefunden");
 		}
+	}
+	
+	public void createFileDropHandler(String username, JPanel p){
+		p.setTransferHandler(new FileDropHandler(username,model));
 	}
 
 	@Override

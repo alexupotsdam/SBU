@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -8,12 +9,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -49,12 +55,11 @@ public class View extends SFrame  {
 	static JLabel titleText, label1;
 	static JPanel topRibbon; // Sharedbox Überschrift Hintergrund
 
-	// static SFileButton filesButtons[] = new SFileButton[999]; // TODO
-	// vernünftiges
-	// Format vllt
-	// Liste
-
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
+	ImageIcon icond = new ImageIcon("raw/shared.png"); 
+	
+	
+	
 
 	String file1 = "mixtape.mp3"; // Datei platzhalter
 
@@ -114,18 +119,14 @@ public class View extends SFrame  {
 
 		scrollPane.setBounds(0, 0, windowWidth - padding * 2, padding * 30);
 		scrollPane.setBorder(null);
-		// scrollPane.setBackground(Color.blue);
 
 		contentPane = new JPanel(null);
 		contentPane.setLayout(null);
-		// contentPane.setBackground(Color.green);
 		contentPane.setPreferredSize(new Dimension(windowWidth - padding * 2, padding * 30));
 		contentPane.add(scrollPane);
-		// setContentPane(contentPane);
 		contentPane.setBounds(padding, padding * 8, windowWidth - padding * 2, padding * 30);
 		getContentPane().add(contentPane);
-		// pack();
-		
+		controller.createFileDropHandler(username, panel);
 		
 
 		setVisible(true);
@@ -166,6 +167,8 @@ public class View extends SFrame  {
 		} else {
 
 			addSeperator(1);
+			
+			addSharedSeperator();
 
 			int listOffset = fileList.size();
 
@@ -175,8 +178,11 @@ public class View extends SFrame  {
 
 				fileButtons.add(new SFileButton(sharedList.get(i), username, i + listOffset));
 				panel.add(fileButtons.get(i + listOffset));
-				fileButtons.get(i + listOffset).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
-				fileButtons.get(i + listOffset).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+			//	fileButtons.get(i + listOffset).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
+				//fileButtons.get(i + listOffset).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+				
+				setItemSize(fileButtons.get(i + listOffset));
+				
 				fileButtons.get(i + listOffset).addMouseListener(controller);
 
 			}
@@ -192,6 +198,30 @@ public class View extends SFrame  {
 			seperator.setMaximumSize(new Dimension(Integer.MAX_VALUE, 13));
 			panel.add(seperator);
 		}
+	}
+	
+	public void addSharedSeperator(){
+		URL resource = getClass().getClassLoader().getResource("raw/shared.png");  
+		BufferedImage icon = null;
+		try {
+			icon = ImageIO.read(resource);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ImageIcon sharedIcon = new ImageIcon(icon); 
+		JLabel shareLabel = new JLabel("  Geteilte Dateien");
+		shareLabel.setIcon(sharedIcon);
+		shareLabel.setForeground( new Color(80, 80, 80));
+		shareLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		panel.add(shareLabel);
+		setItemSize(shareLabel);
+		
+	}
+	
+	public void setItemSize(JComponent c){
+		c.setMinimumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+		c.setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
+		c.setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
 	}
 
 	private void createGUI() {
