@@ -62,6 +62,8 @@ public class View extends SFrame implements java.util.Observer {
 		this.model = model;
 		controller = new Controller(model, this);
 		model.addObserver(this);
+		
+		model.addListener(username, this);
 
 		this.username = username;
 
@@ -231,6 +233,12 @@ public class View extends SFrame implements java.util.Observer {
 		uploadButton.setOpaque(true);
 		uploadButton.addActionListener(controller.addFileListener(username, "ficken.mp3"));
 		add(uploadButton);
+	}
+	
+	public void info(String s){
+		System.out.println(s);
+		Toast t = new Toast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,
+				Constants.padding * 30, Constants.ribbonColor,  s);
 	}
 
 }

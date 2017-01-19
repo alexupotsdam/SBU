@@ -16,6 +16,9 @@ public class Model extends java.util.Observable {
 	List<User> userList = new ArrayList<User>(); // oder vllt maps nutzen
 
 	Map<String, User> userMap = new HashMap<String, User>();
+	
+	Map<String, View> viewMap = new HashMap<String, View>();
+	
 
 	User a, b;
 
@@ -57,8 +60,8 @@ public class Model extends java.util.Observable {
 		// TODO Auto-generated method stub
 		userMap.get(username).fileList.add(file);
 		System.out.println(file + " hochgeladen.");
-		setChanged();
-		notifyObservers("Datei hinzugefügt.");
+	//	setChanged();
+		//notifyObservers("Datei hinzugefügt.");
 	}
 
 	public boolean shareFile(String username, String username2, int fileID) {
@@ -71,11 +74,13 @@ public class Model extends java.util.Observable {
 			System.out.println("Shared file which " + fileID + " equals " + userMap.get(username).fileList.get(fileID)
 					+ "with " + username2);
 
-			setChanged();
+			//setChanged();
 			
-
+		//	notifyObservers("Neue Datei erhalten.");
 			
-			notifyObservers("Neue Datei erhalten.");
+			viewMap.get(username).info("Datei mit Nutzer '"+username2+"' geteilt");
+			viewMap.get(username2).info("Datei '"+userMap.get(username).fileList.get(fileID)+"' von Nutzer '"+username+"' erhalten");
+			
 			
 			for (String temp : userMap.get(username2).sharedList) {
 				System.out.println(temp);
@@ -83,6 +88,10 @@ public class Model extends java.util.Observable {
 			
 		}
 		return true;
+	}
+	
+	public void addListener(String s, View v){
+		viewMap.put(s, v);
 	}
 
 }
