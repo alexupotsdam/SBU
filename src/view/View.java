@@ -56,12 +56,13 @@ public class View extends SFrame  {
 	JPanel panel;
 	JPanel contentPane;
 
-	static SButton logoutButton, closeButton;
+	static SButton sharedBoxButton, logoutButton, closeButton;
 
 	static JLabel titleText, label1;
 	static JPanel topRibbon; // Sharedbox Überschrift Hintergrund
 
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
+	private ImageIcon sharedBoxIcon = new ImageIcon("raw/logo.png");
 	ImageIcon icond = new ImageIcon("raw/shared.png"); 
 	
 	
@@ -105,6 +106,17 @@ public class View extends SFrame  {
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+			}
+		});
+		
+		sharedBoxButton = new SButton();
+		add(sharedBoxButton);
+		sharedBoxButton.setBounds( 10, 10 , 24, 24);
+		sharedBoxButton.setIcon(sharedBoxIcon);
+
+		sharedBoxButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SToast t = new SToast(300 ,199, 400-Constants.padding*2, 50, Constants.ribbonColor, "(TM) (C) (R) current year und so");
 			}
 		});
 

@@ -39,7 +39,7 @@ public class SFileButton extends JButton{
 		
 		if(string!=null){
  
-		if(string.endsWith("png")||string.endsWith("jpg")){
+		if(string.endsWith("png")||string.endsWith("jpg")||string.endsWith("jpeg")||string.endsWith("psd")){
 			 resource = getClass().getClassLoader().getResource("raw/pic.png");  
 		}
 		else if(string.endsWith("doc")){

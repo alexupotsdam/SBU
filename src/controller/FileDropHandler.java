@@ -12,6 +12,10 @@ import model.Model;
 
 @SuppressWarnings("serial")
 final class FileDropHandler extends TransferHandler {
+	
+	Model model;
+	String username;
+	
     @Override
     public boolean canImport(TransferHandler.TransferSupport support) {
         for (DataFlavor flavor : support.getDataFlavors()) {
@@ -23,7 +27,8 @@ final class FileDropHandler extends TransferHandler {
     }
     
     public FileDropHandler(String username, Model model){
-    	
+    	this.username=username;
+    	this.model=model;
     }
 
     @Override
@@ -43,7 +48,7 @@ final class FileDropHandler extends TransferHandler {
 
         for (File file: files) {
         	System.out.println(file);
-            // do something...
+        	model.addFile(username, file.getName());
         }
         return true;
     }
