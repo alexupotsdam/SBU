@@ -1,28 +1,17 @@
 package model;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-
-import ui.SFileButton;
 import view.View;
 
 public class Model {
 
-	List fileList = new ArrayList();
-
-	List<User> userList = new ArrayList<User>(); // oder vllt maps nutzen
-
 	Map<String, User> userMap = new HashMap<String, User>();
-	
 	Map<String, View> viewMap = new HashMap<String, View>();
 	
-
 	User a, b;
 
 	public Model() {
@@ -46,28 +35,20 @@ public class Model {
 		return false;
 	}
 
-	public List files(String username) {
+	public List<String> files(String username) {
 		return userMap.get(username).fileList;
 	}
 
-	public List sharedFiles(String username) {
+	public List<String> sharedFiles(String username) {
 		return userMap.get(username).sharedList;
 	}
 
-	public void deleteSomething() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void addFile(String username, String file) {
-		// TODO Auto-generated method stub
 		userMap.get(username).fileList.add(file);
-	//	System.out.println(file + " hochgeladen.");
 		viewMap.get(username).notify("Datei '"+file+"' hochgeladen.");
 	}
 
 	public boolean shareFile(String username, String username2, int fileID) {
-		// TODO Auto-generated method stub
 
 		if (userMap.get(username2) == null) {
 			return false;
@@ -85,7 +66,6 @@ public class Model {
 			for (String temp : userMap.get(username2).sharedList) {
 				System.out.println(temp);
 			}
-			
 		}
 		return true;
 	}

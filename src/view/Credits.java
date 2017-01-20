@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import ui.Constants;
 import ui.SFrame;
 
+@SuppressWarnings("serial")
 public class Credits extends SFrame{
 
 	public Credits(int x, int y){

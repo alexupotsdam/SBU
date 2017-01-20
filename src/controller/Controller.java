@@ -30,14 +30,6 @@ public class Controller  implements ActionListener, MouseListener{
 		
 	}
 	
-	public ActionListener getDeleteListener () {
-        return new ActionListener() {
-            @Override public void actionPerformed (ActionEvent e) {
-                model.deleteSomething();
-            }
-        };
-    }
-	
 	public ActionListener addFileListener (final String username, final String filename) {
         return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
@@ -51,12 +43,7 @@ public class Controller  implements ActionListener, MouseListener{
 		return new ActionListener() {
 			
             @Override public void actionPerformed (ActionEvent e) {
-               // model.shareFile(username, username2, i);
-            	
             	createShareWindow(username, i);
-            	
-            	//ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 200 + Constants.padding * 8, 600 - Constants.padding * 2,
-            		//	Constants.padding * 20, this);
             }
         };
 	}

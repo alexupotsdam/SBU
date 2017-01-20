@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 
 
+@SuppressWarnings("serial")
 public class SToast extends JFrame {
 	
 	float opacity=0.7f;
