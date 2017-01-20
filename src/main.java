@@ -1,3 +1,6 @@
+import view.Login;
+import model.Model;
+
 //import gui.LoginView;
 
 
@@ -16,9 +19,6 @@ public class main {
 		
 		Login login = new Login(model);
 		//View view = new View(model, "a");
-		
-		
-		
 		
 
 	//	Controller controller=new Controller(model, view);

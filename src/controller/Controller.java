@@ -1,8 +1,4 @@
 package controller;
-import FileDropHandler;
-import Model;
-import ShareWindow;
-import View;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -12,9 +8,13 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+import model.Model;
+
 import ui.Constants;
 import ui.ContextMenu;
 import ui.SFileButton;
+import view.ShareWindow;
+import view.View;
 
 
 public class Controller  implements ActionListener, MouseListener{

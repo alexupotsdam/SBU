@@ -17,11 +17,11 @@ public class ContextMenu extends JPopupMenu{
 	
 	JMenuItem items[]=new JMenuItem[7];
 	
-	public ContextMenu(Controller controller, Object object, String username, int fileID, boolean ownsfile){
+	public ContextMenu(Controller controller, Object object, String username, int fileID, boolean ownsFile){
 		//System.out.println("ContextMenu for "+object+" created.");
 		
 		this.fileID=fileID;
-		
+
 		items[0]=new JMenuItem("Teilen");
 		items[1]=new JMenuItem("Umbenennen");
 		items[2]=new JMenuItem("Öffnen");
@@ -31,11 +31,12 @@ public class ContextMenu extends JPopupMenu{
 		items[6]=new JMenuItem("Kopieren");
 		
 		for(int i=0; i<items.length; i++){
+			if(i==0&&!ownsFile){} else	//bei fremden dateien kein Teilen möglich machen
 			add(items[i]);
 		}
 		
-		this.remove(items[0]);
-		//items[0].addActionListener(controller.shareFileButtonListener(username, fileID));
+		if(ownsFile)
+			items[0].addActionListener(controller.shareFileButtonListener(username, fileID));
 		
 	}
 	
