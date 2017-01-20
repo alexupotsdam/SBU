@@ -86,8 +86,8 @@ public class Controller  implements ActionListener, MouseListener{
 		}
 	}
 	
-	public void createFileDropHandler(String username, JPanel p){
-		p.setTransferHandler(new FileDropHandler(username,model));
+	public void createFileDropHandler(String username, View view){
+		view.setTransferHandler(new FileDropHandler(username,model));
 	}
 
 	@Override

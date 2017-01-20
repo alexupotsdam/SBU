@@ -64,9 +64,6 @@ public class View extends SFrame  {
 	private ImageIcon closeImageIcon = new ImageIcon("raw/close.png");
 	private ImageIcon sharedBoxIcon = new ImageIcon("raw/logo.png");
 	ImageIcon icond = new ImageIcon("raw/shared.png"); 
-	
-	
-	
 
 	String file1 = "mixtape.mp3"; // Datei platzhalter
 
@@ -144,9 +141,8 @@ public class View extends SFrame  {
 		contentPane.add(scrollPane);
 		contentPane.setBounds(padding, padding * 8, windowWidth - padding * 2, padding * 30);
 		getContentPane().add(contentPane);
-		controller.createFileDropHandler(username, panel);
+		controller.createFileDropHandler(username, this);
 		
-
 		setVisible(true);
 		
 		SToast t = new SToast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,
@@ -171,8 +167,7 @@ public class View extends SFrame  {
 				}
 				fileButtons.add(new SFileButton(fileList.get(i), username, i, true));
 				panel.add(fileButtons.get(i));
-				fileButtons.get(i).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
-				fileButtons.get(i).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
+				setItemSize(fileButtons.get(i));
 				fileButtons.get(i).addMouseListener(controller);
 			}
 		}
@@ -185,24 +180,17 @@ public class View extends SFrame  {
 		} else {
 
 			addSeperator(1);
-			
-			addSharedSeperator();
+			addSharedSeperator(); //der Comic Sans shared text
 
 			int listOffset = fileList.size();
 
 			for (int i = 0; i < sharedList.size(); i++) {
-
 				addSeperator(1);
-
+				
 				fileButtons.add(new SFileButton(sharedList.get(i), username, i + listOffset, false));
 				panel.add(fileButtons.get(i + listOffset));
-			//	fileButtons.get(i + listOffset).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
-				//fileButtons.get(i + listOffset).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
-				
 				setItemSize(fileButtons.get(i + listOffset));
-				
 				fileButtons.get(i + listOffset).addMouseListener(controller);
-
 			}
 
 		}
@@ -243,11 +231,11 @@ public class View extends SFrame  {
 	}
 
 	private void createGUI() {
-		// TODO Auto-generated method stub
-		label1 = new JLabel("Weil schöne Software wichtiger als schöner Code ist.");
+		//label1 = new JLabel("Weil schöne Software wichtiger als schöner Code ist.");
+		label1 = new JLabel("Zum Hochladen bitte Dateien per Drag and Drop auf die weiße Fläche ziehen.");
 		label1.setForeground(Color.white);
 		label1.setFont(new Font("Sans", Font.BOLD, 12));
-		label1.setBounds(padding, padding * 5, 450, 36);
+		label1.setBounds(padding, padding * 5, 700, 36);
 		label1.setVerticalAlignment(SwingConstants.NORTH);
 		add(label1);
 

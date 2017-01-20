@@ -42,7 +42,7 @@ public class SFileButton extends JButton{
 		if(string.endsWith("png")||string.endsWith("jpg")||string.endsWith("jpeg")||string.endsWith("psd")){
 			 resource = getClass().getClassLoader().getResource("raw/pic.png");  
 		}
-		else if(string.endsWith("doc")){
+		else if(string.endsWith("doc")||string.endsWith("docx")){
 			resource = getClass().getClassLoader().getResource("raw/doc.png");  
 		}
 		else if(string.endsWith("mp3")||string.endsWith("wav")){
@@ -64,7 +64,6 @@ public class SFileButton extends JButton{
 		text=string;
 		}
 		
-		//System.out.println("file "+text);
 		setup();
 		
 		
@@ -95,44 +94,24 @@ public class SFileButton extends JButton{
 	
 	@Override
 	   protected void paintComponent(Graphics g) {
-	//	System.out.println("paint component"+text);
 		
 	      Graphics2D g2 = (Graphics2D) g.create();
 	      Graphics2D g3 = (Graphics2D) g.create();
-	  //    g2.setPaint(Color.RED);
-	    //  g2.fillRoundRect(2, 2, getWidth(), getHeight(), 24, 24);
-	
-	      
-	      g3.setPaint( new Color(250, 250, 250)); 
-	      
+	 
+	      g3.setPaint( new Color(250, 250, 250));       
 	      g3.fillRect(0, 0, getWidth(), getHeight());  
 	     
-	      
 	      g2.setPaint( new Color(0, 0, 0));
-	      /*
-	      g2.drawLine(0, 0, getWidth(), 0);
-	      g2.setPaint( new Color(200, 0, 0));
-	      g2.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);  */
-	//      g2.setPaint( new Color(230, 230, 230));
-	  //    g2.drawLine(Constants.padding*2, getHeight()-2, getWidth(), getHeight()-2);
-
-	      
 	      g2.setRenderingHint(
 	    	        RenderingHints.KEY_TEXT_ANTIALIASING,
 	    	        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 	      
 	      g2.setPaint( new Color(100, 100, 100));
-	      
 	      g2.drawString(text, 30, 18);
-	      
 	      g2.dispose();
 
-	      
 	     g.drawImage(icon, 2, 2, 22, 22, this);
-	  
-	   //  super.paintComponent(g);
-	//     super.paintComponent(g);
-	    
+	 	    
 	   }
 
 	public int getID(){
