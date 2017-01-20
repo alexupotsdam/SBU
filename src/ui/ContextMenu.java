@@ -18,8 +18,7 @@ public class ContextMenu extends JPopupMenu{
 	JMenuItem items[]=new JMenuItem[7];
 	
 	public ContextMenu(Controller controller, Object object, String username, int fileID, boolean ownsFile){
-		//System.out.println("ContextMenu for "+object+" created.");
-		
+
 		this.fileID=fileID;
 
 		items[0]=new JMenuItem("Teilen");
@@ -37,7 +36,6 @@ public class ContextMenu extends JPopupMenu{
 		
 		if(ownsFile)
 			items[0].addActionListener(controller.shareFileButtonListener(username, fileID));
-		
 	}
 	
 }

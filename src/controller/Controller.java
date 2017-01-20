@@ -27,7 +27,6 @@ public class Controller  implements ActionListener, MouseListener{
 		System.out.println("Controller erstellt.");
 		this.model=model;
 		this.view=view;
-		
 	}
 	
 	public ActionListener addFileListener (final String username, final String filename) {
@@ -79,12 +78,10 @@ public class Controller  implements ActionListener, MouseListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 	}
 
 	@Override
@@ -94,29 +91,18 @@ public class Controller  implements ActionListener, MouseListener{
 				 ((SFileButton) e.getSource()).getUsername(),  ((SFileButton) e.getSource()).getID(), ((SFileButton) e.getSource()).isOwner());
          
 		 cm.show((Component) e.getSource(), e.getX(), e.getY());
-         
-         
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseEntered(MouseEvent e) {		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseExited(MouseEvent e) {	
 	}
-
-	
-	
 	
 }

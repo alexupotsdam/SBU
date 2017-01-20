@@ -10,7 +10,6 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
-
 @SuppressWarnings("serial")
 public class SFileButton extends JButton{
 
@@ -21,17 +20,13 @@ public class SFileButton extends JButton{
 	String username;
 	
 	boolean ownsFile;
-	
 	public int fileID;
-	
 
 	public SFileButton(String string, String username, int fileID, boolean ownsFile) {
-		// TODO Auto-generated constructor stub
 		
 		this.username=username;
 		this.ownsFile=ownsFile;
 		this.fileID=fileID;
-		//System.out.println("created "+fileID);
 		
 		if(string!=null){
  
@@ -61,8 +56,6 @@ public class SFileButton extends JButton{
 		}
 		
 		setup();
-		
-		
 	}
 
 	public SFileButton() {
@@ -79,13 +72,7 @@ public class SFileButton extends JButton{
 		
 		setForeground(Color.black);
 		setBackground(null);
-		//setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.GRAY));
 		
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 	
 	@Override
