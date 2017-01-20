@@ -24,13 +24,16 @@ public class SFileButton extends JButton{
 	String text;
 	String username;
 	
+	boolean ownsFile;
+	
 	public int fileID;
 	
 
-	public SFileButton(String string, String username, int fileID) {
+	public SFileButton(String string, String username, int fileID, boolean ownsFile) {
 		// TODO Auto-generated constructor stub
 		
 		this.username=username;
+		this.ownsFile=ownsFile;
 		this.fileID=fileID;
 		//System.out.println("created "+fileID);
 		
@@ -138,5 +141,9 @@ public class SFileButton extends JButton{
 	
 	public String getUsername(){
 		return username;
+	}
+	
+	public boolean isOwner(){
+		return ownsFile;
 	}
 }

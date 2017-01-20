@@ -20,6 +20,8 @@ public class User {
 		fileList.add("dfsgiuh.doc");
 		fileList.add("asdfsadf.xml");
 		
+		sharedList.add("asdfsadf.xml");
+		
 		System.out.println("User");
 	}
 	

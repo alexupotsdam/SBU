@@ -26,6 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+import controller.Controller;
 import ui.Constants;
 import ui.SButton;
 import ui.SFileButton;
@@ -50,7 +52,7 @@ public class View extends SFrame  {
 	JPanel panel;
 	JPanel contentPane;
 
-	static SButton uploadButton, closeButton;
+	static SButton logoutButton, closeButton;
 
 	static JLabel titleText, label1;
 	static JPanel topRibbon; // Sharedbox Überschrift Hintergrund
@@ -151,7 +153,7 @@ public class View extends SFrame  {
 				if (i != 0) {
 					addSeperator(1);
 				}
-				fileButtons.add(new SFileButton(fileList.get(i), username, i));
+				fileButtons.add(new SFileButton(fileList.get(i), username, i, true));
 				panel.add(fileButtons.get(i));
 				fileButtons.get(i).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
 				fileButtons.get(i).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
@@ -176,7 +178,7 @@ public class View extends SFrame  {
 
 				addSeperator(1);
 
-				fileButtons.add(new SFileButton(sharedList.get(i), username, i + listOffset));
+				fileButtons.add(new SFileButton(sharedList.get(i), username, i + listOffset, false));
 				panel.add(fileButtons.get(i + listOffset));
 			//	fileButtons.get(i + listOffset).setPreferredSize(new Dimension(windowWidth - padding * 4, padding * 2));
 				//fileButtons.get(i + listOffset).setMaximumSize(new Dimension(windowWidth - padding * 4, padding * 2));
@@ -209,10 +211,10 @@ public class View extends SFrame  {
 			e.printStackTrace();
 		}
 		ImageIcon sharedIcon = new ImageIcon(icon); 
-		JLabel shareLabel = new JLabel("  Geteilte Dateien");
+		JLabel shareLabel = new JLabel("  GETEILTE DATEIEN");
 		shareLabel.setIcon(sharedIcon);
 		shareLabel.setForeground( new Color(80, 80, 80));
-		shareLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		shareLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
 		panel.add(shareLabel);
 		setItemSize(shareLabel);
 		
@@ -245,12 +247,18 @@ public class View extends SFrame  {
 		topRibbon.setBounds(0, 0, windowWidth, padding * 7);
 		add(topRibbon);
 
-		uploadButton = new SButton("Datei Hochladen");
-		uploadButton.setBounds(padding, windowHeight - padding * 5, windowWidth - padding * 2, padding * 4);
-		uploadButton.setBackground(Constants.ribbonColor);
-		uploadButton.setOpaque(true);
-		uploadButton.addActionListener(controller.addFileListener(username, "ficken.mp3"));
-		add(uploadButton);
+		logoutButton = new SButton("Ausloggen");
+		logoutButton.setBounds(padding, windowHeight - padding * 5, windowWidth - padding * 2, padding * 4);
+		logoutButton.setBackground(Constants.ribbonColor);
+		logoutButton.setOpaque(true);
+		//logoutButton.addActionListener(controller.addFileListener(username, "ficken.mp3"));
+		add(logoutButton);
+		
+		logoutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logout();
+			}
+		});
 	}
 	
 	public void notify(String s){
@@ -261,6 +269,11 @@ public class View extends SFrame  {
 		
 		Toast t = new Toast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,
 				Constants.padding * 30, Constants.ribbonColor,  s);
+	}
+	
+	public void logout(){
+		close(1.0f);
+		model.removeListener(username);
 	}
 
 }

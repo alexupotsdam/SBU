@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import controller.Controller;
+
 import ui.Constants;
 import ui.SButton;
 import ui.STextField;

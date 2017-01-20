@@ -72,7 +72,6 @@ public class Model {
 			userMap.get(username2).sharedList.add(userMap.get(username).fileList.get(fileID));
 			System.out.println("Shared file which " + fileID + " equals " + userMap.get(username).fileList.get(fileID)
 					+ "with " + username2);
-
 			
 			viewMap.get(username).notify("Datei mit Nutzer '"+username2+"' geteilt");
 			
@@ -90,6 +89,10 @@ public class Model {
 	
 	public void addListener(String s, View v){
 		viewMap.put(s, v);
+	}
+	
+	public void removeListener(String s){
+		viewMap.remove(s);
 	}
 
 }

@@ -1,3 +1,9 @@
+package controller;
+import FileDropHandler;
+import Model;
+import ShareWindow;
+import View;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +13,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 import ui.Constants;
+import ui.ContextMenu;
 import ui.SFileButton;
 
 
@@ -97,7 +104,7 @@ public class Controller  implements ActionListener, MouseListener{
 	public void mousePressed(MouseEvent e) {
 		
 		 ContextMenu cm=new ContextMenu(this, e.getSource(),  
-				 ((SFileButton) e.getSource()).getUsername(),  ((SFileButton) e.getSource()).getID());
+				 ((SFileButton) e.getSource()).getUsername(),  ((SFileButton) e.getSource()).getID(), ((SFileButton) e.getSource()).isOwner());
          
 		 cm.show((Component) e.getSource(), e.getX(), e.getY());
          
