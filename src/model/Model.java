@@ -42,9 +42,9 @@ public class Model {
 		return userMap.get(username).sharedList;
 	}
 
-	public void addFile(String username, String file) {
-		userMap.get(username).fileList.add(file);
-		viewMap.get(username).notify("Datei '"+file+"' hochgeladen.");
+	public void addFile(String username, String filename) {
+		userMap.get(username).fileList.add(filename);
+		viewMap.get(username).notify("Datei '"+filename+"' hochgeladen.");
 	}
 
 	public boolean shareFile(String username, String username2, int fileID) {

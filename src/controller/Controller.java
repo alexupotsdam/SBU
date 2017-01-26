@@ -13,6 +13,7 @@ import model.Model;
 import ui.Constants;
 import ui.ContextMenu;
 import ui.SFileButton;
+import ui.SToast;
 import view.ShareWindow;
 import view.View;
 
@@ -67,8 +68,8 @@ public class Controller  implements ActionListener, MouseListener{
 		//			Constants.padding * 30, Constants.ribbonColor, "Datei geteilt");
 		} else {
 			System.out.println("No such user");
-	//		Toast t = new Toast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
-		//			Constants.padding * 30, Constants.redColor, "Benutzer nicht gefunden");
+			SToast t = new SToast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
+					Constants.padding * 30, Constants.redColor, "Benutzer nicht gefunden");
 		}
 	}
 	
