@@ -16,34 +16,32 @@ public class SFileButton extends JButton{
 	BufferedImage icon;
 	URL resource;
 	
-	String text;
+	String fileName;
 	String username;
 	
 	boolean ownsFile;
 	public int fileID;
 
-	public SFileButton(String string, String username, int fileID, boolean ownsFile) {
+	public SFileButton(String fileName, String username, int fileID, boolean ownsFile) {
 		
 		this.username=username;
 		this.ownsFile=ownsFile;
 		this.fileID=fileID;
 		
-		if(string!=null){
- 
-		if(string.endsWith("png")||string.endsWith("jpg")||string.endsWith("jpeg")||string.endsWith("psd")){
-			 resource = getClass().getClassLoader().getResource("raw/pic.png");  
-		}
-		else if(string.endsWith("doc")||string.endsWith("docx")){
-			resource = getClass().getClassLoader().getResource("raw/doc.png");  
-		}
-		else if(string.endsWith("mp3")||string.endsWith("wav")){
-			resource = getClass().getClassLoader().getResource("raw/note.png");  
-		}
-		else if(string.endsWith("xls")||string.endsWith("csv")){
-			resource = getClass().getClassLoader().getResource("raw/xls.png");  
-		}
-		else {
-			resource = getClass().getClassLoader().getResource("raw/other.png");  
+		this.fileName=fileName;
+
+		if (fileName != null) {
+
+			if (fileName.endsWith("png") || fileName.endsWith("jpg") || fileName.endsWith("jpeg") || fileName.endsWith("psd")) {
+				resource = getClass().getClassLoader().getResource("raw/pic.png");
+			} else if (fileName.endsWith("doc") || fileName.endsWith("docx")) {
+				resource = getClass().getClassLoader().getResource("raw/doc.png");
+			} else if (fileName.endsWith("mp3") || fileName.endsWith("wav")) {
+				resource = getClass().getClassLoader().getResource("raw/note.png");
+			} else if (fileName.endsWith("xls") || fileName.endsWith("csv")) {
+				resource = getClass().getClassLoader().getResource("raw/xls.png");
+			} else {
+				resource = getClass().getClassLoader().getResource("raw/other.png");  
 		}
 		
 		 try {
@@ -52,7 +50,7 @@ public class SFileButton extends JButton{
 	            e.printStackTrace();
 	        }
 		
-		text=string;
+		 
 		}
 		
 		setup();
@@ -90,7 +88,7 @@ public class SFileButton extends JButton{
 	    	        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 	      
 	      g2.setPaint( new Color(100, 100, 100));
-	      g2.drawString(text, 30, 18);
+	      g2.drawString(fileName, 30, 18);
 	      g2.dispose();
 
 	     g.drawImage(icon, 2, 2, 22, 22, this);
@@ -99,6 +97,10 @@ public class SFileButton extends JButton{
 
 	public int getID(){
 		return fileID;
+	}
+	
+	public String getFileName(){
+		return fileName;
 	}
 	
 	public String getUsername(){

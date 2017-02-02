@@ -22,8 +22,10 @@ public class Model {
 	User a, b;
 
 	public Model() {
-		userMap.put("a", new User("a", "a"));
-		userMap.put("b", new User("b", "b"));
+		userMap.put("alex@potsdam.de", new User("alex@potsdam.de", "a"));
+		userMap.put("boris@potsdam.de", new User("boris@potsdam.de", "b"));
+		userMap.put("chris@potsdam.de", new User("chris@potsdam.de", "c"));
+
 
 		System.out.println("Model erstellt");
 	}
@@ -69,20 +71,19 @@ public class Model {
 		
 	}
 
-	public boolean shareFile(String username, String username2, int fileID) {
+	public boolean shareFile(String username, String username2, String fileName) {
 
 		if (userMap.get(username2) == null) {
 			return false;
 		} else {
-			userMap.get(username2).sharedList.add(userMap.get(username).fileList.get(fileID));
-			System.out.println("Shared file which " + fileID + " equals " + userMap.get(username).fileList.get(fileID)
-					+ "with " + username2);
+			userMap.get(username2).sharedList.add(username+ File.separatorChar + fileName);
+			System.out.println("Shared file  at path " + username+ File.separatorChar+fileName);
 			
 			viewMap.get(username).notify("Datei mit Nutzer '"+username2+"' geteilt");
 			
 			if(viewMap.get(username2)!=null)
-			viewMap.get(username2).notify("Datei '"+userMap.get(username).fileList.get(fileID)+"' von Nutzer '"+username+"' erhalten");
-			
+			viewMap.get(username2).notify("Datei '"+ fileName + "' von Nutzer '"+username+"' erhalten");
+			 
 			for (String temp : userMap.get(username2).sharedList) {
 				System.out.println(temp);
 			}

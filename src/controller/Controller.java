@@ -40,30 +40,30 @@ public class Controller  implements ActionListener, MouseListener{
         };
     }*/
 	
-	public ActionListener shareFileButtonListener(final String username, final int i) {
+	public ActionListener shareFileButtonListener(final String username, final String fileName) {
 		return new ActionListener() {
 			
             @Override public void actionPerformed (ActionEvent e) {
-            	createShareWindow(username, i);
+            	createShareWindow(username, fileName);
             }
         };
 	}
 	
-	public void createShareWindow(final String username, final int i){
+	public void createShareWindow(final String username, final String fileName){
 		ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 200 + Constants.padding * 8, 600 - Constants.padding * 2,
-        			Constants.padding * 20, username, i, this);
+        			Constants.padding * 20, username, fileName, this);
 	}
 	
-	public ActionListener shareFileListener(final String username, final String username2, final int i){
+	public ActionListener shareFileListener(final String username, final String username2, final String fileName){
 			return new ActionListener() {
 				@Override public void actionPerformed (ActionEvent e) {
-            	model.shareFile(username, username2, i);
+            	model.shareFile(username, username2, fileName);
 				}
 			};
 	}
 	
-	public void shareFile(final String username, final String username2, final int i){
-		if(model.shareFile(username, username2, i)){
+	public void shareFile(final String username, final String username2, final String fileName){
+		if(model.shareFile(username, username2, fileName)){
 			System.out.println("Success");
 	//		Toast t = new Toast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
 		//			Constants.padding * 30, Constants.ribbonColor, "Datei geteilt");
@@ -90,7 +90,7 @@ public class Controller  implements ActionListener, MouseListener{
 	public void mousePressed(MouseEvent e) {
 		
 		 ContextMenu cm=new ContextMenu(this, e.getSource(),  
-				 ((SFileButton) e.getSource()).getUsername(),  ((SFileButton) e.getSource()).getID(), ((SFileButton) e.getSource()).isOwner());
+				 ((SFileButton) e.getSource()).getUsername(),  ((SFileButton) e.getSource()).getFileName(), ((SFileButton) e.getSource()).isOwner());
          
 		 cm.show((Component) e.getSource(), e.getX(), e.getY());
 	}

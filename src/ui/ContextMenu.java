@@ -12,14 +12,17 @@ public class ContextMenu extends JPopupMenu{
 	int windowWidth=Constants.padding*8;
 	int windowHeight=Constants.padding*4;
 	
+	String fileName;
+	
 	int fileID;
 	String ficken="b";
 	
 	JMenuItem items[]=new JMenuItem[7];
 	
-	public ContextMenu(Controller controller, Object object, String username, int fileID, boolean ownsFile){
+	public ContextMenu(Controller controller, Object object, String username, String fileName, boolean ownsFile){
 
-		this.fileID=fileID;
+		//this.fileID=fileID;
+		this.fileName=fileName;
 
 		items[0]=new JMenuItem("Teilen");
 		items[1]=new JMenuItem("Umbenennen");
@@ -35,7 +38,7 @@ public class ContextMenu extends JPopupMenu{
 		}
 		
 		if(ownsFile)
-			items[0].addActionListener(controller.shareFileButtonListener(username, fileID));
+			items[0].addActionListener(controller.shareFileButtonListener(username, fileName));
 	}
 	
 }

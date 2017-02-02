@@ -18,7 +18,7 @@ import ui.STextField;
 @SuppressWarnings("serial")
 public class ShareWindow extends SFrame {
 
-	public ShareWindow(int x, int y, int xx, int yy, final String username, final int i, final Controller controller) {
+	public ShareWindow(int x, int y, int xx, int yy, final String username, final String fileName, final Controller controller) {
 		setBounds(x, y, xx, yy);
 
 		getContentPane().setBackground(Constants.ribbonColor);
@@ -56,7 +56,7 @@ public class ShareWindow extends SFrame {
 		
 		shareButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.shareFile(username, usernameField.getText(), i);
+				controller.shareFile(username, usernameField.getText(), fileName);
 				close(1.0f);
 			}
 		});
