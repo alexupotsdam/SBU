@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,9 +43,19 @@ public class Model {
 		return userMap.get(username).sharedList;
 	}
 
-	public void addFile(String username, String filename) {
-		userMap.get(username).fileList.add(filename);
-		viewMap.get(username).notify("Datei '"+filename+"' hochgeladen.");
+	public void addFile(String username, File file) {
+//		userMap.get(username).fileList.add(filename);
+	//	viewMap.get(username).notify("Datei '"+filename+"' hochgeladen.");
+
+		
+		
+		//
+		String path =System.getProperty("java.io.tmpdir");
+    	
+    	path=path+username+"/"+file.getName();
+    	
+    	System.out.println(path);
+		
 	}
 
 	public boolean shareFile(String username, String username2, int fileID) {

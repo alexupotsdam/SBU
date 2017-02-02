@@ -18,5 +18,7 @@ public class Constants {
 	
 	public static int windowX=100;
 	public static int windowY=100;
+	
+	public static String uploadPathRoot = System.getProperty("java.io.tmpdir");
 
 }

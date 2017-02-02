@@ -10,6 +10,7 @@ public class User {
 	//in der file list steht dazu noch mit welchem leuten die datei geteilt wurde das heißt im falle von löschen kann der eintrag
 	//aus den anderen listen rausgenommen werden.
 	
+	List<String> shareList = new ArrayList<String>();
 	List<String> sharedList = new ArrayList<String>();
 	
 	public String name, password;

@@ -48,7 +48,11 @@ final class FileDropHandler extends TransferHandler {
 
         for (File file: files) {
         	System.out.println(file);
-        	model.addFile(username, file.getName());
+       // 	model.addFile(username, file.getName());
+         	model.addFile(username, file);
+        	
+        	
+        	
         }
         return true;
     }
