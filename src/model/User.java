@@ -36,6 +36,10 @@ public class User {
 		sharedList.add("asdfsadf.xml");*/
 		
 		System.out.println("User");
+		
+		
+		
+		
 	}
 	
 	
