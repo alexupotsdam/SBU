@@ -8,13 +8,12 @@ import ui.Constants;
 
 public class User {
 
-	List<String> fileList = new ArrayList<String>();
+	List<String> fileList = new ArrayList<String>();  //beinhaltet Dateinamen von Dateien die man selber hochgeladen hat
+	List<String> sharedList = new ArrayList<String>();//beinhaltet Referenzen auf Dateien die mit einem geteilt wurden.
 	
-	//in der file list steht dazu noch mit welchem leuten die datei geteilt wurde das heißt im falle von löschen kann der eintrag
-	//aus den anderen listen rausgenommen werden.
+//	List<String> shareList = new ArrayList<String>(); hier könnte drin stehen wer mit wem geteilt hat, um das Teilen nach dem löschen
+//  von dateien rückgängig gemacht wird da wir aber kein löschen implementiert haben muss das auch nicht mehr sein.
 	
-	List<String> shareList = new ArrayList<String>();
-	List<String> sharedList = new ArrayList<String>();
 	
 	public String name, password;
 	

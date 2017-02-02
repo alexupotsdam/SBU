@@ -51,8 +51,6 @@ public class Model {
 	}
 
 	public void addFile(String username, File file) {
-//		userMap.get(username).fileList.add(filename);
-	//	viewMap.get(username).notify("Datei '"+filename+"' hochgeladen.");
 
 		String path = Constants.uploadPathRoot + username + File.separator ;
         path = path +  file.getName();
@@ -60,7 +58,6 @@ public class Model {
     	try {
 			Files.copy(Paths.get(file.getPath()), Paths.get(path), REPLACE_EXISTING);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("adfsihfasdfefefjo");
 			e.printStackTrace();
 		}
@@ -85,7 +82,6 @@ public class Model {
 			
 			if(viewMap.get(username2)!=null)
 			viewMap.get(username2).notify("Datei '"+userMap.get(username).fileList.get(fileID)+"' von Nutzer '"+username+"' erhalten");
-			
 			
 			for (String temp : userMap.get(username2).sharedList) {
 				System.out.println(temp);
