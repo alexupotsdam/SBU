@@ -17,7 +17,7 @@ public class AddFileTest {
 	@Test
 	public void test() {
 		
-		String username = "b";
+		String username = "boris@potsdam.de";
 		Model testModel = new Model();
 		View testView = new View(testModel,username);
 		
