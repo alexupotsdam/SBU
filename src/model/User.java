@@ -6,6 +6,10 @@ import java.util.List;
 public class User {
 
 	List<String> fileList = new ArrayList<String>();
+	
+	//in der file list steht dazu noch mit welchem leuten die datei geteilt wurde das heißt im falle von löschen kann der eintrag
+	//aus den anderen listen rausgenommen werden.
+	
 	List<String> sharedList = new ArrayList<String>();
 	
 	public String name, password;
