@@ -30,6 +30,7 @@ public class Controller  implements ActionListener, MouseListener{
 		this.view=view;
 	}
 	
+	/*
 	public ActionListener addFileListener (final String username, final String filename) {
         return new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
@@ -37,7 +38,7 @@ public class Controller  implements ActionListener, MouseListener{
                // e.getSource()
             }
         };
-    }
+    }*/
 	
 	public ActionListener shareFileButtonListener(final String username, final int i) {
 		return new ActionListener() {

@@ -1,10 +1,17 @@
 package model;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static java.nio.file.StandardCopyOption.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ui.Constants;
 import view.View;
 
 public class Model {
@@ -47,14 +54,21 @@ public class Model {
 //		userMap.get(username).fileList.add(filename);
 	//	viewMap.get(username).notify("Datei '"+filename+"' hochgeladen.");
 
-		
-		
-		//
-		String path =System.getProperty("java.io.tmpdir");
+		String path = Constants.uploadPathRoot + username + File.separator ;
+        path = path +  file.getName();
     	
-    	path=path+username+"/"+file.getName();
+    	try {
+			Files.copy(Paths.get(file.getPath()), Paths.get(path), REPLACE_EXISTING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("adfsihfasdfefefjo");
+			e.printStackTrace();
+		}
     	
     	System.out.println(path);
+    	
+    	userMap.get(username).fileList.add(file.getName());
+    	viewMap.get(username).notify("Datei '"+file.getName()+"' hochgeladen.");
 		
 	}
 

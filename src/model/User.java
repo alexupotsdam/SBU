@@ -1,6 +1,9 @@
 package model;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import ui.Constants;
 
 
 public class User {
@@ -20,6 +23,11 @@ public class User {
 		
 		this.name=name;
 		this.password=password;
+		
+		String path = Constants.uploadPathRoot + name + File.separator ;
+		File f = new File(path);
+	    f.mkdir();
+		
 		
 		/*fileList.add("gdfihlu.png");
 		fileList.add("iuhdsf.mp3");
