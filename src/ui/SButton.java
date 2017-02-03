@@ -9,13 +9,11 @@ public class SButton extends JButton{
 	private static final long serialVersionUID = 5064648328217226105L;
 
 	public SButton(String string) {
-		// TODO Auto-generated constructor stub
 		setText(string);
 		setup();
 	}
 
 	public SButton() {
-		// TODO Auto-generated constructor stub
 		setup();
 	}
 
@@ -28,8 +26,5 @@ public class SButton extends JButton{
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
-
 }

@@ -27,7 +27,6 @@ import ui.SPasswordField;
 import ui.STextField;
 import ui.SToast;
 
-//auf VCM verzichten da nichts zu tun is
 @SuppressWarnings("serial")
 public class Login extends SFrame {
 	
@@ -60,7 +59,7 @@ public class Login extends SFrame {
 
 	public Login(final Model model) {
 
-		this.model=model;
+		this.model = model;
 		
 		setBounds(windowX, windowY, windowWidth, windowHeight);
 		addWindowListener(new WindowAdapter() {
@@ -88,16 +87,11 @@ public class Login extends SFrame {
 		    @Override
 		    public void actionPerformed(ActionEvent e)
 		    {
-		        System.out.println("some action");
 		        if (model.loginAction(usernameField.getText(), passwordField.getText()) == true) {
 					View view = new View(model, usernameField.getText());
-					System.out.println("eingelocht");
-				//	Toast t = new Toast(self().getX() + padding, self().getY() + padding * 8, 800 - padding * 2,
-					//		padding * 30, Constants.ribbonColor, "Eingeloggt");
 				} else {
 					SToast t = new SToast(self().getX() + padding, self().getY() + padding * 8, windowWidth - padding * 2,
 							padding * 13, Constants.redColor, "Falsche Nutzerdaten");
-
 				}
 		    }
 		};

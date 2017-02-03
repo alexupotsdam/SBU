@@ -1,17 +1,19 @@
 import view.Login;
 import model.Model;
-
-//import gui.LoginView;
-
+import model.User;
 
 public class main {
 
 	public static void main(String[] args) {
 		
 		Model model = new Model();
-		Login login = new Login(model); //zum Login bitte U: a, P: a und U: b, P: b benutzen. 
 		
+		//zum Login bitte folgende Daten benutzen:
+		//U: alex@potsdam.de P: a 
+		//U: boris@potsdam.de P: b
+		//U: chris@potsdam.de P: c
 		
+		Login login = new Login(model);
 		
 	}
 }

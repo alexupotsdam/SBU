@@ -14,9 +14,7 @@ public class User {
 //	List<String> shareList = new ArrayList<String>(); hier könnte drin stehen wer mit wem geteilt hat, um das Teilen nach dem löschen
 //  von dateien rückgängig gemacht wird da wir aber kein löschen implementiert haben muss das auch nicht mehr sein.
 	
-	
 	public String name, password;
-	
 	
 	public User(String name, String password){
 		
@@ -26,22 +24,5 @@ public class User {
 		String path = Constants.uploadPathRoot + name + File.separator ;
 		File f = new File(path);
 	    f.mkdir();
-		
-		
-		/*fileList.add("gdfihlu.png");
-		fileList.add("iuhdsf.mp3");
-		fileList.add("dfsgiuh.doc");
-		fileList.add("asdfsadf.xml");
-		
-		sharedList.add("asdfsadf.xml");*/
-		
-		System.out.println("User");
-		
-		
-		
-		
 	}
-	
-	
-	
 }

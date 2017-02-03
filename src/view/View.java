@@ -113,7 +113,8 @@ public class View extends SFrame  {
 
 		sharedBoxButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SToast t = new SToast(300 ,199, 400-Constants.padding*2, 50, Constants.ribbonColor, "(TM) (C) (R) current year und so");
+				SToast t = new SToast(300 ,199, 400-Constants.padding*2, 50, 
+						Constants.ribbonColor, "(TM) (C) (R) current year und so");
 			}
 		});
 
@@ -158,7 +159,7 @@ public class View extends SFrame  {
 		fileList = model.files(username);
 
 		if (fileList.size() == 0) {
-			System.out.println("empty");
+			//empty
 		} else {
 
 			for (int i = 0; i < fileList.size(); i++) {
@@ -176,7 +177,7 @@ public class View extends SFrame  {
 		sharedList = model.sharedFiles(username);
 
 		if (sharedList.size() == 0) {
-			System.out.println("empty");
+			//empty
 		} else {
 
 			addSeperator(1);
@@ -209,11 +210,13 @@ public class View extends SFrame  {
 	public void addSharedSeperator(){
 		URL resource = getClass().getClassLoader().getResource("raw/shared.png");  
 		BufferedImage icon = null;
+		
 		try {
 			icon = ImageIO.read(resource);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		ImageIcon sharedIcon = new ImageIcon(icon); 
 		JLabel shareLabel = new JLabel("  GETEILTE DATEIEN");
 		shareLabel.setIcon(sharedIcon);
@@ -231,7 +234,6 @@ public class View extends SFrame  {
 	}
 
 	private void createGUI() {
-		//label1 = new JLabel("Weil schöne Software wichtiger als schöner Code ist.");
 		label1 = new JLabel("Zum Hochladen bitte Dateien per Drag and Drop auf die weiße Fläche ziehen.");
 		label1.setForeground(Color.white);
 		label1.setFont(new Font("Sans", Font.BOLD, 12));
@@ -255,7 +257,6 @@ public class View extends SFrame  {
 		logoutButton.setBounds(padding, windowHeight - padding * 5, windowWidth - padding * 2, padding * 4);
 		logoutButton.setBackground(Constants.ribbonColor);
 		logoutButton.setOpaque(true);
-		//logoutButton.addActionListener(controller.addFileListener(username, "ficken.mp3"));
 		add(logoutButton);
 		
 		logoutButton.addActionListener(new ActionListener() {
@@ -268,7 +269,6 @@ public class View extends SFrame  {
 	public void notify(String s){
 		
 		refreshFileList();
-		System.out.println("View Update observed");
 		repaint();
 		
 		SToast t = new SToast(getX() + Constants.padding, getY() + Constants.padding * 8, 800 - Constants.padding * 2,

@@ -13,7 +13,6 @@ import javax.swing.event.DocumentListener;
 public class STextField extends JTextField{
 
 	public STextField(String string, final Color color) {
-		// TODO Auto-generated constructor stub
 		setText(string);
 		
 		setForeground(Color.gray);

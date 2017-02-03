@@ -44,11 +44,8 @@ public class ShareWindow extends SFrame {
 				Constants.padding * 4);
 		shareButton.setBackground(Constants.ribbonColor);
 		shareButton.setOpaque(true);
-		// shareButton.addActionListener(controller.addFileListener(username,
-		// "ficken.mp3"));
 		add(shareButton);
 
-		// shareButton.setBackground(Constants.backgroundColor);
 		shareButton.setForeground(Color.white);
 
 		shareButton.setBorder((BorderFactory.createMatteBorder(1, 1, 1, 1, Color.WHITE)));
@@ -67,8 +64,6 @@ public class ShareWindow extends SFrame {
 	
 	public ShareWindow self(){
 		return this;
-		
 	}
-	
 	
 }

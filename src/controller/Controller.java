@@ -24,21 +24,9 @@ public class Controller  implements ActionListener, MouseListener{
 	View view;
 	
 	public Controller(Model model, View view) {
-		// TODO Auto-generated constructor stub
-		System.out.println("Controller erstellt.");
-		this.model=model;
-		this.view=view;
+		this.model = model;
+		this.view = view;
 	}
-	
-	/*
-	public ActionListener addFileListener (final String username, final String filename) {
-        return new ActionListener() {
-            @Override public void actionPerformed (ActionEvent e) {
-                model.addFile(username, filename);
-               // e.getSource()
-            }
-        };
-    }*/
 	
 	public ActionListener shareFileButtonListener(final String username, final String fileName) {
 		return new ActionListener() {
@@ -50,27 +38,29 @@ public class Controller  implements ActionListener, MouseListener{
 	}
 	
 	public void createShareWindow(final String username, final String fileName){
-		ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 200 + Constants.padding * 8, 600 - Constants.padding * 2,
+		ShareWindow shareWindow = new ShareWindow(200 + Constants.padding, 
+				200 + Constants.padding * 8, 600 - Constants.padding * 2,
         			Constants.padding * 20, username, fileName, this);
 	}
 	
 	public ActionListener shareFileListener(final String username, final String username2, final String fileName){
 			return new ActionListener() {
 				@Override public void actionPerformed (ActionEvent e) {
-            	model.shareFile(username, username2, fileName);
+					model.shareFile(username, username2, fileName);
 				}
 			};
 	}
 	
 	public void shareFile(final String username, final String username2, final String fileName){
+		String massage;
+		if(username.equals(username2)) massage = "Eigener Account";
+		else massage = "Benutzer nicht gefunden";
+		
 		if(model.shareFile(username, username2, fileName)){
-			System.out.println("Success");
-	//		Toast t = new Toast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
-		//			Constants.padding * 30, Constants.ribbonColor, "Datei geteilt");
 		} else {
-			System.out.println("No such user");
-			SToast t = new SToast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8, 800 - Constants.padding * 2,
-					Constants.padding * 30, Constants.redColor, "Benutzer nicht gefunden");
+			SToast t = new SToast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8,
+					800 - Constants.padding * 2, Constants.padding * 30, Constants.redColor,
+					massage);
 		}
 	}
 	
@@ -89,9 +79,9 @@ public class Controller  implements ActionListener, MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		 ContextMenu cm=new ContextMenu(this, e.getSource(),  
-				 ((SFileButton) e.getSource()).getUsername(),  ((SFileButton) e.getSource()).getFileName(), ((SFileButton) e.getSource()).isOwner());
-         
+		 ContextMenu cm=new ContextMenu(this, e.getSource(), ((SFileButton) e.getSource()).getUsername(),
+			 ((SFileButton) e.getSource()).getFileName(), ((SFileButton) e.getSource()).isOwner());
+		 
 		 cm.show((Component) e.getSource(), e.getX(), e.getY());
 	}
 

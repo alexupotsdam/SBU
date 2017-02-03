@@ -14,7 +14,6 @@ public class SPasswordField extends JPasswordField{
 
 	public SPasswordField(String string) {
 		super(string);
-		// TODO Auto-generated constructor stub
 		
 		setForeground(Color.gray);
 		setBackground(null);
@@ -25,7 +24,6 @@ public class SPasswordField extends JPasswordField{
 		        // TODO Auto-generated method stub
 		    }
 		    public void insertUpdate(DocumentEvent e) {
-		        // TODO Auto-generated method stub  
 		    	setForeground(Color.darkGray);
 		    }
 		    public void changedUpdate(DocumentEvent e) {

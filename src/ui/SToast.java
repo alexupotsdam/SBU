@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class SToast extends JFrame {
 	
-	float opacity=0.7f;
+	float opacity = 0.7f;
 
 	public SToast(int x, int y, int xx, int yy, Color color, String text){
 		
@@ -41,15 +41,16 @@ public class SToast extends JFrame {
 		            public void run() {
 		            	
 		            	final ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
+		            	
 		            	exec.scheduleAtFixedRate(new Runnable() {
 		            	  @Override
 		            	  public void run() {
 		            		  setOpacity(opacity);
-		            		  opacity=opacity-0.03f;
-		            		  if(opacity<0.001f){
+		            		  opacity = opacity-0.03f;
+		            		  
+		            		  if(opacity < 0.001f){
 		            			  setVisible(false);
 		            			  exec.shutdown();
-		            			  System.out.println("done");
 		            		  }
 		            	  }
 		            	}, 0, 20, TimeUnit.MILLISECONDS); 	

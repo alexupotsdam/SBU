@@ -13,7 +13,6 @@ import view.View;
 
 public class AddFileTest {
 	
-
 	@Test
 	public void test() {
 		

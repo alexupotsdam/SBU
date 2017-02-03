@@ -24,9 +24,9 @@ public class SFileButton extends JButton{
 
 	public SFileButton(String fileName, String username, int fileID, boolean ownsFile) {
 		
-		this.username=username;
-		this.ownsFile=ownsFile;
-		this.fileID=fileID;
+		this.username = username;
+		this.ownsFile = ownsFile;
+		this.fileID = fileID;
 		
 		this.fileName=fileName;
 
@@ -42,22 +42,19 @@ public class SFileButton extends JButton{
 				resource = getClass().getClassLoader().getResource("raw/xls.png");
 			} else {
 				resource = getClass().getClassLoader().getResource("raw/other.png");  
-		}
+			}
 		
-		 try {
-	        	icon = ImageIO.read(resource);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-		
-		 
+			try {
+		    	icon = ImageIO.read(resource);
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
 		}
 		
 		setup();
 	}
 
 	public SFileButton() {
-		// TODO Auto-generated constructor stub
 		setup();
 	}
 
@@ -79,10 +76,10 @@ public class SFileButton extends JButton{
 	      Graphics2D g2 = (Graphics2D) g.create();
 	      Graphics2D g3 = (Graphics2D) g.create();
 	 
-	      g3.setPaint( new Color(250, 250, 250));       
+	      g3.setPaint(new Color(250, 250, 250));       
 	      g3.fillRect(0, 0, getWidth(), getHeight());  
 	     
-	      g2.setPaint( new Color(0, 0, 0));
+	      g2.setPaint(new Color(0, 0, 0));
 	      g2.setRenderingHint(
 	    	        RenderingHints.KEY_TEXT_ANTIALIASING,
 	    	        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -91,7 +88,7 @@ public class SFileButton extends JButton{
 	      g2.drawString(fileName, 30, 18);
 	      g2.dispose();
 
-	     g.drawImage(icon, 2, 2, 22, 22, this);
+	      g.drawImage(icon, 2, 2, 22, 22, this);
 	 	    
 	   }
 

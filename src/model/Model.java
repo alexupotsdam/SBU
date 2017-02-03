@@ -25,9 +25,6 @@ public class Model {
 		userMap.put("alex@potsdam.de", new User("alex@potsdam.de", "a"));
 		userMap.put("boris@potsdam.de", new User("boris@potsdam.de", "b"));
 		userMap.put("chris@potsdam.de", new User("chris@potsdam.de", "c"));
-
-
-		System.out.println("Model erstellt");
 	}
 
 	public boolean loginAction(String username, String password) {
@@ -60,33 +57,26 @@ public class Model {
     	try {
 			Files.copy(Paths.get(file.getPath()), Paths.get(path), REPLACE_EXISTING);
 		} catch (IOException e) {
-			System.out.println("adfsihfasdfefefjo");
 			e.printStackTrace();
 		}
-    	
-    	System.out.println(path);
-    	
+    	    	
     	userMap.get(username).fileList.add(file.getName());
-    	viewMap.get(username).notify("Datei '"+file.getName()+"' hochgeladen.");
+    	viewMap.get(username).notify("Datei '" + file.getName() + "' hochgeladen.");
 		
 	}
 
 	public boolean shareFile(String username, String username2, String fileName) {
 
-		if (userMap.get(username2) == null) {
+		if (userMap.get(username2) == null || username.equals(username2)){
 			return false;
 		} else {
-			userMap.get(username2).sharedList.add(username+ File.separatorChar + fileName);
-			System.out.println("Shared file  at path " + username+ File.separatorChar+fileName);
-			
-			viewMap.get(username).notify("Datei mit Nutzer '"+username2+"' geteilt");
+			userMap.get(username2).sharedList.add(username+ File.separatorChar + fileName);			
+			viewMap.get(username).notify("Datei mit Nutzer '" + username2 + "' geteilt");
 			
 			if(viewMap.get(username2)!=null)
-			viewMap.get(username2).notify("Datei '"+ fileName + "' von Nutzer '"+username+"' erhalten");
+			viewMap.get(username2).notify("Datei '" + fileName + "' von Nutzer '"+username+"' erhalten");
 			 
-			for (String temp : userMap.get(username2).sharedList) {
-				System.out.println(temp);
-			}
+			for (String temp : userMap.get(username2).sharedList){}
 		}
 		return true;
 	}
