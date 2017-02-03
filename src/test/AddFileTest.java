@@ -19,7 +19,7 @@ public class AddFileTest {
 		
 		String username = "boris@potsdam.de";
 		Model testModel = new Model();
-		View testView = new View(testModel,username);
+		new View(testModel,username);
 		
 		URL testFilePath = getClass().getClassLoader().getResource("raw/shared.png");
 		File testFile = new File(testFilePath.getFile());
