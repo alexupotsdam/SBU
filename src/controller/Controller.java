@@ -52,15 +52,15 @@ public class Controller  implements ActionListener, MouseListener{
 	}
 	
 	public void shareFile(final String username, final String username2, final String fileName){
-		String massage;
-		if(username.equals(username2)) massage = "Eigener Account";
-		else massage = "Benutzer nicht gefunden";
+		String message;
+		if(username.equals(username2)) message = "Eigener Account";
+		else message = "Benutzer nicht gefunden";
 		
 		if(model.shareFile(username, username2, fileName)){
 		} else {
 			SToast t = new SToast(view.getX() + Constants.padding, view.getY() + Constants.padding * 8,
 					800 - Constants.padding * 2, Constants.padding * 30, Constants.redColor,
-					massage);
+					message);
 		}
 	}
 	
